@@ -1,0 +1,3 @@
+#!/bin/sh
+cd /opt/oomox/ &&
+exec ./plugins/icons_numix/change_color.sh "$@"
