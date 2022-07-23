@@ -5,8 +5,8 @@ local beautiful = require("beautiful")
 local hotkeys_popup = require("awful.hotkeys_popup")
 require("awful.hotkeys_popup.keys")
 
-local modkey = require('config.keys.mod_keys').modKey
-local altkey = require('config.keys.mod_keys').altKey
+local modkey = require("config.keys.mod_keys").modKey
+local altkey = require("config.keys.mod_keys").altKey
 
 local s = awful.screen.focused()
 
@@ -27,12 +27,12 @@ local globalkeys = gears.table.join(
         end,
         {description = "toggle tray visibility", group = "awesome"}),
     
-    awful.key({ modkey }, "'",
+    awful.key({ modkey }, "0",
         function ()
             s.mywibox.visible = not s.mywibox.visible
         end,
         {description = "toggle tray visibility", group = "awesome"}),
-    awful.key({ modkey, "Shift" }, "'",
+    awful.key({ modkey, "Shift" }, "0",
         function ()
             s.mylayoutbox.visible = not s.mylayoutbox.visible
             s.mytasklist.visible = not s.mytasklist.visible
@@ -43,7 +43,7 @@ local globalkeys = gears.table.join(
         {description = "toggle tray visibility", group = "awesome"}),
 
 
-    awful.key({ modkey,           }, "u",
+    awful.key({ modkey,           }, "'",
         function ()
             uc = awful.client.urgent.get()
             -- If there is no urgent client, go back to last tag
