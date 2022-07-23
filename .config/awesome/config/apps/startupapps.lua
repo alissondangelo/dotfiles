@@ -4,13 +4,10 @@ local awful = require('awful')
 
 local apps = {
     "gwe", --"gwe --hide-window",
-    --"flatpak run com.leinardi.gwe",
     "feh --bg-scale $(< ${HOME}/.cache/wal/wal)",
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",
     "picom -b --experimental-backends --backend glx --config  $HOME/.config/picom/picom.conf",
     "numlockx on"
-    --"$HOME/.config/awesome/scripts/nvidia_clock.sh",
-    --"fan-control pcurve"
 }
 
 

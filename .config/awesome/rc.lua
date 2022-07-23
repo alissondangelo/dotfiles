@@ -17,9 +17,9 @@ require("config.modules.notifications")
 require("config.rules")
 require("config.layouts")
 require("config.topbar")
+require("config.menu")
 require("config.apps.defaultapps")
 require("config.apps.startupapps")
-require("config.menu")
 
 --Set keybinds and buttons
 root.keys(require("config.keys.global").keys)
