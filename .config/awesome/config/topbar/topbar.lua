@@ -70,14 +70,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.systray = wibox.widget.systray()
     s.systray.visible = false
     s.systrayicon = wibox.widget.imagebox(icons.systrayoff)
-    s.systrayicon:buttons(my_table.join(awful.button({}, 1, function()
-        s.systray.visible = not s.systray.visible
-        if s.systray.visible == false then
-            s.systrayicon.image = icons.systrayoff
-        else
-            s.systrayicon.image = icons.systrayon
-        end
-    end)))
+    topbar_buttons.systray(s.systrayicon, s.systray, icons.systrayon, icons.systrayoff)
     --}}}
 
 	--{{{Binary clock

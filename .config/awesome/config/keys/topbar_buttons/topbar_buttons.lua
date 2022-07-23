@@ -76,7 +76,15 @@ local topbar_buttons = {
                 volwidget.update()
             end)
         ))
-    end
+    end,
+
+    systray = function (tray_widget, tray, icon_on, icon_off)
+        tray_widget:buttons(gears.table.join(
+            awful.button({}, 1, function()
+                tray.visible = not tray.visible
+            end)
+        ))
+    end,
 }
 
 return topbar_buttons
