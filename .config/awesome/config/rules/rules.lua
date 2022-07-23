@@ -2,8 +2,8 @@ local awful = require("awful")
 local gears = require("gears")
 local beautiful = require("beautiful")
 
-local clientkeys = require("config.keys.client_keys")
-local clientbuttons = require("config.keys.client_buttons")
+local client_keys = require("config.keys.client")
+
 
 -- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
@@ -16,8 +16,8 @@ awful.rules.rules = {
             border_color = beautiful.border_normal,
             focus = awful.client.focus.filter,
             raise = true,
-            keys = clientkeys,
-            buttons = clientbuttons,
+            keys = client_keys.keys,
+            buttons = client_keys.buttons,
             --screen = awful.screen.preferred,
             screen = awful.screen.focused,
             size_hints_honor = false,

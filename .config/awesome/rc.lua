@@ -22,8 +22,8 @@ require("config.apps.startupapps")
 require("config.menu")
 
 --Set keybinds and buttons
-root.keys(require("config.keys.global_keys"))
-root.buttons(require("config.keys.global_buttons"))
+root.keys(require("config.keys.global").keys)
+root.buttons(require("config.keys.global").buttons)
 
 
 -- {{{ Signals
