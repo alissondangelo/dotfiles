@@ -31,7 +31,6 @@ bind -m vi-insert 'Control-l: clear-screen'
 # This is commented out if using starship prompt
 PS1='[\u@\h \W]\$ '
 
-### PATH
 if [ -d "$HOME/.bin" ] ;
   then PATH="$HOME/.bin:$PATH"
 fi
@@ -198,6 +197,9 @@ alias stat='git status'  # 'status' is protected name so using 'stat' instead
 alias tag='git tag'
 alias newtag='git tag -a'
 
+#dotfiles git alias
+alias dotfiles=/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME
+
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
 
@@ -263,6 +265,3 @@ cat ~/.cache/wal/sequences
 
 # To add support for TTYs this line can be optionally added.
 #source ~/.cache/wal/colors-tty.sh
-
-#dotfiles git alias
-alias dotfiles=/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME
