@@ -140,7 +140,7 @@ theme.tasklist_widget_template = {
 }
 
 
---{{{tag list 
+--{{{tag list
 theme.taglist_shape_container = rounded_rect_shape
 theme.taglist_shape = rounded_rect_shape
 theme.taglist_shape_clip_container = true
@@ -216,7 +216,6 @@ theme.tooltip_fg = theme.gtk.tooltip_fg_color
 theme.tooltip_bg = theme.gtk.tooltip_bg_color
 theme.tooltip_border_color = functions.change_color_alpha(theme.gtk.header_button_bg_color, "88")
 theme.tooltip_border_width = theme.gtk.button_border_width
---theme.tooltip_shape = rounded_rect_shape
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
@@ -236,7 +235,7 @@ theme.menu_submenu = "▸ "
 -- You can add as many variables as
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
---theme.bg_widget = "#cc0000"
+-- theme.bg_widget = "#cc0000"
 
 
 -- Recolor Layout icons:
@@ -248,7 +247,7 @@ theme = theme_assets.recolor_titlebar(
     theme, theme.titlebar_fg_normal, "normal"
 )
 theme = theme_assets.recolor_titlebar(
-    theme, functions.reduce_contrast(theme.titlebar_fg_normal, 50), "normal", "hover"
+    theme, theme.titlebar_fg_normal, "normal", "hover"
 )
 theme = theme_assets.recolor_titlebar(
     theme, theme.gtk.error_bg_color, "normal", "press"
@@ -257,7 +256,7 @@ theme = theme_assets.recolor_titlebar(
     theme, theme.titlebar_fg_focus, "focus"
 )
 theme = theme_assets.recolor_titlebar(
-    theme, functions.reduce_contrast(theme.titlebar_fg_focus, 50), "focus", "hover"
+    theme, theme.titlebar_fg_focus, "focus", "hover"
 )
 theme = theme_assets.recolor_titlebar(
     theme, theme.gtk.error_bg_color, "focus", "press"
@@ -284,35 +283,8 @@ theme.awesome_icon = theme_assets.awesome_icon(
 theme.taglist_squares_sel = nil
 theme.taglist_squares_unsel = nil
 
-
 theme.lain_icons         = os.getenv("HOME") ..
                            "/.config/awesome/config/theme/icons/layout/"
-theme.layout_termfair    = theme.lain_icons .. "termfair.png"
-theme.layout_centerfair  = theme.lain_icons .. "centerfair.png"  -- termfair.center
-theme.layout_cascade     = theme.lain_icons .. "cascade.png"
-theme.layout_cascadetile = theme.lain_icons .. "cascadetile.png" -- cascade.tile
 theme.layout_centerwork  = theme.lain_icons .. "centerwork.png"
-theme.layout_centerworkh = theme.lain_icons .. "centerworkh.png" -- centerwork.horizontal
-
-
-
---[[
--- Generate wallpaper:
-local wallpaper_bg = theme.gtk.base_color
-local wallpaper_fg = theme.gtk.bg_color
-local wallpaper_alt_fg = theme.gtk.selected_bg_color
-if not is_dark(theme.bg_normal) then
-    wallpaper_bg, wallpaper_fg = wallpaper_fg, wallpaper_bg
-end
-wallpaper_bg = reduce_contrast(wallpaper_bg, 50)
-wallpaper_fg = reduce_contrast(wallpaper_fg, 30)
-wallpaper_fg = mix(wallpaper_fg, wallpaper_bg, 0.4)
-wallpaper_alt_fg = mix(wallpaper_alt_fg, wallpaper_fg, 0.4)
-theme.wallpaper = function(s)
-    return theme_assets.wallpaper(wallpaper_bg, wallpaper_fg, wallpaper_alt_fg, s)
-end
---]]
 
 return theme
-
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80:foldmethod=marker
