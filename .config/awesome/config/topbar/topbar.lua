@@ -15,8 +15,6 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local icons = require("config.topbar.iconcharacters.icons_test")
 
-local topbar_icons_buttons = require("config.keys.topbar_icons_buttons")
-
 awful.screen.connect_for_each_screen(function(s)
 
     for i = 1, 9, 1 do
