@@ -93,7 +93,9 @@ local globalkeys = gears.table.join(
         {description = "pen rofi menu", group = "client"}
     ),
 
-    ---{{{ Lock,Sleep,Restart,Shutdown 
+    ---{{{ Lock,Sleep,Restart,Shutdown
+    awful.key({ modkey,           }, "F8", function () awful.spawn(awesome.quit()) end,
+        {description = "Logout", group = "system"}),
     awful.key({ modkey,           }, "F9", function () awful.spawn("slock") end,
         {description = "Lock the screen", group = "system"}),
     awful.key({ modkey,           }, "F10", function () awful.spawn("systemctl suspend") end,
@@ -116,8 +118,6 @@ local globalkeys = gears.table.join(
     awful.key( { modkey, "Mod1"  }, "Print", function() awful.spawn("screenshot.sh -e") end,
         {description = "edit most recent screenshot with gimp", group = "screenshots"}),
 
-    awful.key({ modkey,           }, "F8", function () awful.spawn("gwe") end,
-              {description = "Green With Envy", group = "games"}),
     awful.key({ modkey,           }, "t", function () awful.spawn("/usr/bin/java -jar /opt/tlauncher/tlauncher.jar") end,
               {description = "Minecraft (Tlauncher)", group = "games"}),
 
