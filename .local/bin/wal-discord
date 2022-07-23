@@ -1,0 +1,3 @@
+#!/bin/bash
+
+~/wal-discord/wal-discord -t -b wal
