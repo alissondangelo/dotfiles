@@ -4,8 +4,6 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi   = require("beautiful.xresources").apply_dpi
 
-local taglist_buttons  = require("config.keys.taglist_buttons")
-local tasklist_buttons = require("config.keys.tasklist_buttons")
 
 local topbar_buttons = require("config.keys.topbar_buttons")
 
