@@ -10,7 +10,7 @@ local volume_widget   = require("config.topbar.widgets.volume")
 local binclock_widget = require("config.topbar.widgets.binclock")
 local calendar_widget = require("config.topbar.widgets.calendar")
 
-local icons = require("config.topbar.iconcharacters.icons_test")
+local icons = require("config.topbar.iconcharacters.icons_binary")
 
 awful.screen.connect_for_each_screen(function(s)
 

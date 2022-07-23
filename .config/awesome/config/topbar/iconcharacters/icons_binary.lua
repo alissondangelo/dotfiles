@@ -1,10 +1,5 @@
 local lain_icons = os.getenv("HOME") .. "/.config/awesome/config/topbar/iconcharacters/binary/"
 
-
-
-                            
-
-
 icons = {}
 
 --tags
@@ -21,7 +16,7 @@ icons.tag[9]  = lain_icons .. "tag_9.png"
 
 --numbers
 icons.number = {}
-icons.number[20]  = lain_icons .. "1.png"
+icons.number[20] = lain_icons .. "1.png"
 icons.number[0]  = lain_icons .. "0.png"
 icons.number[1]  = lain_icons .. "1.png"
 icons.number[2]  = lain_icons .. "2.png"
