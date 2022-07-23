@@ -1,7 +1,4 @@
 local naughty = require('naughty')
-local beautiful = require('beautiful')
-local gears = require('gears')
-
 
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to

@@ -1,14 +1,11 @@
 local awful = require("awful")
-local gears = require("gears")
 local beautiful = require("beautiful")
 
 local client_keys = require("config.keys.client")
 
-
--- {{{ Rules
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
-    -- All clients will match this rule.
+    -- All clients will match this rule------------------------
     {
         rule = {},
         properties = {
@@ -27,7 +24,7 @@ awful.rules.rules = {
         }
     },
 
-    -- Floating clients.
+    --Floating clients-----------------------------------------
     {
         rule_any = {
             instance = {
@@ -37,13 +34,12 @@ awful.rules.rules = {
                 "pinentry"
             },
             class = {
-                "Nvidia-settings", 
-                "File-roller", 
-                "Lxappearance", 
-                "Tor Browser",
+                "Nvidia-settings",
+                "File-roller",
+                "Lxappearance",
+                "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
                 "mpv",
                 "Yad"
-                -- Needs a fixed window size to avoid fingerprinting by screen size.
                 -- Note that the name property shown in xprop might be set slightly after creation of the client
                 -- and the name shown there might not match defined rules here.
             },
@@ -51,7 +47,7 @@ awful.rules.rules = {
                 "Event Tester" -- xev.
             },
             role = {
-                "GtkFileChooserDialog", 
+                "GtkFileChooserDialog",
                 "AlarmWindow", -- Thunderbird's calendar.
                 "ConfigManager", -- Thunderbird's about:config.
                 "pop-up" -- e.g. Google Chrome's (detached) Developer Tools.
@@ -61,7 +57,7 @@ awful.rules.rules = {
         properties = {floating = true}
     },
 
-    -- Fullscreen clients
+    --Fullscreen clients-----------------------------------------
     {
         rule_any = {
             class = {
@@ -71,7 +67,7 @@ awful.rules.rules = {
         properties = {fullscreen = true}
     },
 
-    --[[ Maximized clients
+    --Maximized clients------------------------------------------
     {
         rule_any = {
             class = {
@@ -79,10 +75,10 @@ awful.rules.rules = {
             },
         },
         properties = {maximized = true}
-    },]]
+    },
 
 
-    -- Specific Tag clients
+    --Specific Tag clients---------------------------------------
     {
         rule_any = {
             class = {
@@ -92,13 +88,5 @@ awful.rules.rules = {
         properties = {screen = 1, tag = "9"}
     }, {rule = {class = "discord"}, properties = {screen = 1, tag = "8"}}
 
-    -- Add titlebars to normal clients and dialogs
-    -- { rule_any = {type = { "normal", "dialog" }
-    --   }, properties = { titlebars_enabled = true }
-    -- },
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- { rule = { class = "Firefox" },
-    --   properties = { screen = 1, tag = "2" } },
 }
--- }}}
+
