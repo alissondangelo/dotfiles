@@ -3,7 +3,6 @@ local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi   = require("beautiful.xresources").apply_dpi
 
-
 local topbar_buttons = require("config.keys.topbar_buttons")
 
 local volume_widget   = require("config.topbar.widgets.volume")
@@ -14,6 +13,7 @@ local icons = require("config.topbar.iconcharacters.icons_binary")
 
 awful.screen.connect_for_each_screen(function(s)
 
+    --tags------------------------------------------------------
     for i = 1, 9, 1 do
         awful.tag.add(i, {
             icon = icons.tag[i],
@@ -23,8 +23,6 @@ awful.screen.connect_for_each_screen(function(s)
             selected = i == 1
         })
     end
-
-    --awful.tag({ icons.number[1], icons.number[2], icons.number[3], icons.number[4], icons.number[5], icons.number[6], icons.number[7], icons.number[8], icons.number[9] }, s, awful.layout.layouts[1])
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -52,7 +50,7 @@ awful.screen.connect_for_each_screen(function(s)
     end
     --]]
 
-    -- Create a tasklist widget
+    --tasklist widget------------------------------------------
     s.mytasklist = awful.widget.tasklist {
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
@@ -60,14 +58,13 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = topbar_buttons.tasklist
     }
 
-    --{{{SysTray
+    --SysTray--------------------------------------------------
     s.systray = wibox.widget.systray()
     s.systray.visible = false
     s.systrayicon = wibox.widget.imagebox(icons.systrayoff)
     topbar_buttons.systray(s.systrayicon, s.systray, icons.systrayon, icons.systrayoff)
-    --}}}
 
-	--{{{Binary clock
+	--Binary clock---------------------------------------------
     s.binclock = wibox.widget(binclock_widget{
         height = dpi(20),
         show_seconds = true,
@@ -75,6 +72,7 @@ awful.screen.connect_for_each_screen(function(s)
         color_inactive = "#555555"
     })
 
+    --calendar-------------------------------------------------
     s.cw = calendar_widget{
         attach_to = {s.binclock},
         week_start = 1,
@@ -88,22 +86,18 @@ awful.screen.connect_for_each_screen(function(s)
             shape = beautiful.tooltip_shape
         }
     }
-    --}}}
 
-    --{{{volume
+    --volume---------------------------------------------------
     s.volicon1 = wibox.widget.imagebox(icons.volmuted)
     s.volicon2 = wibox.widget.imagebox(icons.volmuted)
     s.volicon = {
         s.volicon1,
         s.volicon2
     }
-
     s.volicon.layout = wibox.layout.fixed.horizontal
-
     s.volume = volume_widget({
         settings = function()
             local index, perc = "", tonumber(volume_now.level) or 0
-
             if volume_now.status == "off" then
                 s.volicon1.image = icons.volmuted
                 s.volicon2.image = icons.volmuted
@@ -114,11 +108,11 @@ awful.screen.connect_for_each_screen(function(s)
     end})
     topbar_buttons.volume_widget(s.volicon1, s.volume)
     topbar_buttons.volume_widget(s.volicon2, s.volume)
-    --}}}
 
+    --separator------------------------------------------------
     s.separator = wibox.widget({textbox = "", forced_width = dpi(10)})
 
-    -- Create the wibox
+    --Create the wibox-----------------------------------------
     s.mywibox = awful.wibar({ position = "top", screen = s, height = "23" })
 
     -- Keyboard map indicator and switcher
@@ -137,15 +131,12 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            s.separator,
             s.systray,
             s.separator,
             s.systrayicon,--wibox.widget.systray(),
             s.separator,
             s.volicon,
             s.separator,
-            s.datewidget,
-            --s.mykeyboardlayout,
             s.binclock,
         },
     }
