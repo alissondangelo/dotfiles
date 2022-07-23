@@ -1,11 +1,9 @@
 local awful = require("awful")
-local beautiful = require("beautiful")
-
 local dpi = require("beautiful.xresources").apply_dpi
 local helpers = {}
 
 
--- Resize DWIM (Do What I Mean)
+-- Resize DWIM (Do What I Mean)--------------------------------
 -- Resize client or factor
 -- Constants --
 local floating_resize_amount = dpi(20)
@@ -35,6 +33,7 @@ function helpers.resize_dwim(c, direction)
     end
 end
 
+--move to edge-------------------------------------------------
 local direction_translate = {
     ['up'] = 'top',
     ['down'] = 'bottom',
@@ -51,7 +50,7 @@ function helpers.move_to_edge(c, direction)
     end
 end
 
--- Move client DWIM (Do What I Mean)
+-- Move client DWIM (Do What I Mean)---------------------------
 -- Move to edge if the client / layout is floating
 -- Swap by index if maximized
 -- Else swap client by direction
