@@ -9,7 +9,6 @@ beautiful.init(require("config.theme"))
 
 -- Init all modules
 require("config.modules.notifications")
---require("config.modules.notifications")
 require("config.signals")
 
 -- Setup all configs
