@@ -45,7 +45,6 @@ awful.screen.connect_for_each_screen(function(s)
         filter  = awful.widget.taglist.filter.all,
         buttons = topbar_buttons.taglist
     }
-
     -- and apply shape to it
     --[[if beautiful.taglist_shape_container then
         local background_shape_wrapper = wibox.container.background(s.mytaglist)
@@ -126,8 +125,8 @@ awful.screen.connect_for_each_screen(function(s)
                 s.volicon2.image = icons.number[(perc%10)]
             end
     end})
-    topbar_icons_buttons.set_volicon_buttons(s.volicon1, s.volume)
-    topbar_icons_buttons.set_volicon_buttons(s.volicon2, s.volume)
+    topbar_buttons.volume_widget(s.volicon1, s.volume)
+    topbar_buttons.volume_widget(s.volicon2, s.volume)
     --}}}
 
     s.separator = wibox.widget({textbox = "", forced_width = dpi(10)})

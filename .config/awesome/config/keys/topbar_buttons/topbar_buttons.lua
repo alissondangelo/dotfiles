@@ -53,6 +53,30 @@ local topbar_buttons = {
         awful.button({ }, 4, function () awful.layout.inc( 1) end),
         awful.button({ }, 5, function () awful.layout.inc(-1) end)
     ),
+
+    volume_widget = function (volicon, volwidget)
+        volicon:buttons(gears.table.join (
+            awful.button({}, 1, function() -- left click
+            awful.spawn(string.format("pavucontrol"))
+            end),
+            awful.button({}, 2, function() -- middle click
+                os.execute(string.format("%s set %s 100%%", volwidget.cmd, volwidget.channel))
+                volwidget.update()
+            end),
+            awful.button({}, 3, function() -- right click
+                os.execute(string.format("%s set %s toggle", volwidget.cmd, volwidget.togglechannel or volwidget.channel))
+                volwidget.update()
+            end),
+            awful.button({}, 4, function() -- scroll up
+                os.execute(string.format("%s set %s 1%%+", volwidget.cmd, volwidget.channel))
+                volwidget.update()
+            end),
+            awful.button({}, 5, function() -- scroll down
+                os.execute(string.format("%s set %s 1%%-", volwidget.cmd, volwidget.channel))
+                volwidget.update()
+            end)
+        ))
+    end
 }
 
 return topbar_buttons
