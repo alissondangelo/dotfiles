@@ -29,3 +29,15 @@ end)
 client.connect_signal("unfocus", function(c)
     c.border_color = beautiful.border_normal
 end)
+
+-- No border for maximized clients
+function border_adjust(c)
+    if c.maximized then -- no borders if only 1 client visible
+        c.border_width = 0
+    else
+        c.border_width = beautiful.border_width
+        c.border_color = beautiful.border_focus
+    end
+end
+client.connect_signal("focus", border_adjust)
+client.connect_signal("property::maximized", border_adjust)
