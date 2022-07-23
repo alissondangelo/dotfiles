@@ -1,4 +1,3 @@
-local gears = require("gears")
 local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
@@ -10,8 +9,6 @@ local topbar_buttons = require("config.keys.topbar_buttons")
 local volume_widget   = require("config.topbar.widgets.volume")
 local binclock_widget = require("config.topbar.widgets.binclock")
 local calendar_widget = require("config.topbar.widgets.calendar")
-
-local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
 local icons = require("config.topbar.iconcharacters.icons_test")
 
@@ -28,7 +25,6 @@ awful.screen.connect_for_each_screen(function(s)
     end
 
     --awful.tag({ icons.number[1], icons.number[2], icons.number[3], icons.number[4], icons.number[5], icons.number[6], icons.number[7], icons.number[8], icons.number[9] }, s, awful.layout.layouts[1])
-
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
