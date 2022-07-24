@@ -20,12 +20,10 @@ local theme = dofile(themes_path.."default/theme.lua")
 
 local icons = os.getenv("HOME") .. "/.config/awesome/config/theme/icons/layout/"
 
-local functions = require("config.theme.functions")
-
 local font = "Roboto Mono"
 local font_size = "12"
-theme.font          = font .. "Medium" .. font_size
-theme.font_bold     = font .. "Bold" .. font_size
+theme.font          = font .. " Light " .. font_size
+local font_bold     = font .. " Bold " .. font_size
 
 theme.bg_normal     = xrdb.background .. "77"
 theme.bg_focus      = xrdb.color12
@@ -54,14 +52,14 @@ theme.tooltip_bg = theme.bg_normal
 --tasklist--------------------------------------------------------------------------
 --normal color
 theme.tasklist_fg_normal = theme.bg_focus
-theme.tasklist_bg_normal = functions.change_color_alpha(theme.bg_focus, "22")
-theme.tasklist_shape_border_color = functions.change_color_alpha(theme.bg_focus, "33")
+theme.tasklist_bg_normal = theme.bg_focus .. "22"
+theme.tasklist_shape_border_color = theme.bg_focus .. "33"
 
 --focus color
 theme.tasklist_fg_focus = theme.fg_focus
-theme.tasklist_bg_focus = functions.change_color_alpha(theme.border_focus, "55")
+theme.tasklist_bg_focus = theme.border_focus .. "55"
 theme.tasklist_shape_border_color_focus = theme.border_focus
-theme.tasklist_font_focus = theme.font_bold
+theme.tasklist_font_focus = font_bold
 
 --[[ minimized color
 theme.tasklist_shape_border_color_minimized = functions.change_color_alpha(functions.mix(
@@ -69,7 +67,6 @@ theme.tasklist_shape_border_color_minimized = functions.change_color_alpha(funct
     theme.fg_minimize,
     0.85
 ), "88")]]
-
 
 -- Variables set for theming the menu:
 -- menu_[bg|fg]_[normal|focus]
