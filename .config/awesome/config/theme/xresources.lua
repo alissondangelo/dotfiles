@@ -36,16 +36,17 @@ theme.fg_focus      = xrdb.color7
 theme.fg_urgent     = theme.bg_normal
 theme.fg_minimize   = theme.bg_normal
 
-theme.bg_systray    = theme.bg_focus
-
 theme.border_normal = xrdb.color0
 theme.border_focus  = theme.bg_focus
 theme.border_marked = xrdb.color10
 
 theme.useless_gap   = dpi(5)
+
 theme.border_width  = dpi(3)
 theme.border_radius = dpi(3)
 theme.tooltip_border_width = dpi(3)
+
+theme.bg_systray    = theme.bg_focus
 
 theme.tooltip_fg = theme.fg_normal
 theme.tooltip_bg = theme.bg_normal
