@@ -1,1 +1,2 @@
-return require("config.theme.theme")
+--return require("config.theme.gtk")
+return require("config.theme.xresources")

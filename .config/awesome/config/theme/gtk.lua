@@ -50,7 +50,7 @@ theme.fg_urgent     = theme.gtk.error_fg_color
 theme.bg_minimize   = functions.change_color_alpha(functions.mix(theme.wibar_fg, theme.wibar_bg, 0.3), "55")
 theme.fg_minimize   = functions.mix(theme.wibar_fg, theme.wibar_bg, 0.5)
 
-theme.bg_systray    = theme.wibar_bg
+theme.bg_systray    = theme.bg_focus
 
 theme.border_normal = theme.gtk.wm_border_unfocused_color
 theme.border_focus  = functions.change_color_alpha(theme.gtk.wm_border_focused_color, "FF")
@@ -76,7 +76,6 @@ end
 -- titlebar_[bg|fg]_[normal|focus]
 -- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
 -- mouse_finder_[color|timeout|animate_timeout|radius|factor]
-
 
 -- tasklist
 
@@ -139,7 +138,6 @@ theme.tasklist_widget_template = {
     end,
 }
 
-
 --{{{tag list
 theme.taglist_shape_container = rounded_rect_shape
 theme.taglist_shape = rounded_rect_shape
@@ -192,8 +190,6 @@ theme.taglist_fg_focus = theme.fg_focus
 
 --]]
 
-
-
 theme.titlebar_font_normal = theme.gtk.bold_font
 theme.titlebar_bg_normal = theme.gtk.wm_border_unfocused_color
 theme.titlebar_fg_normal = theme.gtk.wm_title_unfocused_color
@@ -231,60 +227,25 @@ theme.menu_height = dpi(24)
 theme.menu_width  = dpi(150)
 theme.menu_submenu_icon = nil
 theme.menu_submenu = "▸ "
-
 -- You can add as many variables as
 -- you wish and access them by using
 -- beautiful.variable in your rc.lua
 -- theme.bg_widget = "#cc0000"
 
-
 -- Recolor Layout icons:
 theme = theme_assets.recolor_layout(theme, theme.wibar_fg)
-
--- Recolor titlebar icons:
---
-theme = theme_assets.recolor_titlebar(
-    theme, theme.titlebar_fg_normal, "normal"
-)
-theme = theme_assets.recolor_titlebar(
-    theme, theme.titlebar_fg_normal, "normal", "hover"
-)
-theme = theme_assets.recolor_titlebar(
-    theme, theme.gtk.error_bg_color, "normal", "press"
-)
-theme = theme_assets.recolor_titlebar(
-    theme, theme.titlebar_fg_focus, "focus"
-)
-theme = theme_assets.recolor_titlebar(
-    theme, theme.titlebar_fg_focus, "focus", "hover"
-)
-theme = theme_assets.recolor_titlebar(
-    theme, theme.gtk.error_bg_color, "focus", "press"
-)
 
 -- Define the icon theme for application icons. If not set then the icons
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 
--- Generate Awesome icon:
-theme.awesome_icon = theme_assets.awesome_icon(
-    theme.menu_height, functions.mix(theme.bg_focus, theme.fg_normal), theme.wibar_bg
-)
-
--- Generate taglist squares:
---local taglist_square_size = dpi(4)
---theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
-    --taglist_square_size, theme.gtk.header_button_border_color
---)
---theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
-    --taglist_square_size, theme.gtk.header_button_border_color
---)
 -- Or disable them:
 theme.taglist_squares_sel = nil
 theme.taglist_squares_unsel = nil
 
-theme.lain_icons         = os.getenv("HOME") ..
+--set centerwork layout icon
+local lain_icons         = os.getenv("HOME") ..
                            "/.config/awesome/config/theme/icons/layout/"
-theme.layout_centerwork  = theme.lain_icons .. "centerwork.png"
+theme.layout_centerwork  = lain_icons .. "centerwork.png"
 
 return theme
