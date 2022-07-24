@@ -110,12 +110,12 @@ local globalkeys = mytable.join(
             s.systray.visible = not s.systray.visible
         end,
         {description = "toggle tray", group = "awesome"}),
-    awful.key({ modkey }, "0",
+    awful.key({ modkey }, "BackSpace",
         function ()
             s.mywibox.visible = not s.mywibox.visible
         end,
         {description = "toggle topbar", group = "awesome"}),
-    awful.key({ modkey, "Shift" }, "0",
+    awful.key({ modkey, "Shift" }, "BackSpace",
         function ()
             s.mylayoutbox.visible = not s.mylayoutbox.visible
             s.mytasklist.visible = not s.mytasklist.visible
@@ -128,18 +128,34 @@ local globalkeys = mytable.join(
     -- media ------------------------------------
     awful.key({ modkey,           }, "KP_Add",
         function ()
-            awful.spawn.with_shell("amixer set Master 1%+")
+            awful.spawn.with_shell("volume-control.sh up")
             s.volume.update()
         end,
         {description = "Volume +", group = "media"}
     ),
     awful.key({ modkey,           }, "KP_Subtract",
         function ()
-            awful.spawn.with_shell("amixer set Master 1%-")
+            awful.spawn.with_shell("volume-control.sh down")
             s.volume.update()
         end,
         {description = "Volume -", group = "media"}
     ),
+    awful.key({ modkey,           }, "KP_Multiply",
+        function ()
+            awful.spawn.with_shell("volume-control.sh toggle")
+            s.volume.update()
+        end,
+        {description = "Volume toggle", group = "media"}
+    ),
+    awful.key({ modkey,           }, "KP_Decimal",
+        function ()
+            awful.spawn.with_shell("pavucontrol")
+            s.volume.update()
+        end,
+        {description = "pavucontrol", group = "media"}
+    ),
+
+
 
     -- customization ------------------------------------
     awful.key({ modkey, "Shift"   }, "w",
