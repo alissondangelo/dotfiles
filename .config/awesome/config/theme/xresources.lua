@@ -25,9 +25,9 @@ local font_size = "12"
 theme.font          = font .. " Light " .. font_size
 local font_bold     = font .. " Bold " .. font_size
 
-theme.bg_normal     = xrdb.background .. "77"
-theme.bg_focus      = xrdb.color12
-theme.bg_urgent     = xrdb.color9
+theme.bg_normal     = xrdb.background .. "88"
+theme.bg_focus      = xrdb.color4
+theme.bg_urgent     = xrdb.color5
 theme.bg_minimize   = xrdb.color8 .. "22"
 theme.bg_systray    = theme.bg_normal
 
@@ -72,9 +72,9 @@ end
 --shape
 theme.taglist_shape = rounded_rect_shape
 --color
-theme.taglist_bg_occupied = theme.border_focus .. "AA"
+theme.taglist_bg_occupied = xrdb.color3 .. "88"
 theme.taglist_bg_empty = "#00000000"
-theme.taglist_bg_focus = xrdb.color8
+theme.taglist_bg_focus = theme.border_focus
 --disable squares
 theme.taglist_squares_sel = nil
 theme.taglist_squares_unsel = nil
@@ -83,7 +83,7 @@ theme.taglist_squares_unsel = nil
 --normal color
 theme.tasklist_fg_normal = theme.bg_focus
 theme.tasklist_bg_normal = theme.bg_focus .. "22"
-theme.tasklist_shape_border_color = theme.bg_focus .. "33"
+theme.tasklist_shape_border_color = theme.bg_focus .. "44"
 --focus color
 theme.tasklist_fg_focus = theme.fg_focus
 theme.tasklist_bg_focus = theme.border_focus .. "55"
