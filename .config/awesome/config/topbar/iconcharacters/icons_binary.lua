@@ -1,6 +1,8 @@
 local lain_icons = os.getenv("HOME") .. "/.config/awesome/config/topbar/iconcharacters/binary/"
+local gears_color = require("gears.color")
+local icons_color = require("beautiful").fg_normal
 
-icons = {}
+local icons = {}
 
 --tags
 icons.tag = {}
@@ -29,11 +31,22 @@ icons.number[8]  = lain_icons .. "8.png"
 icons.number[9]  = lain_icons .. "9.png"
 icons.number[10] = lain_icons .. "1.png"
 
+icons.misc = {}
 --hide systray icons
-icons.systrayon  = lain_icons .. "1.png"
-icons.systrayoff = lain_icons .. "0.png"
+icons.misc.systrayon  = lain_icons .. "1.png"
+icons.misc.systrayoff = lain_icons .. "0.png"
 
 --volume icons
-icons.volmuted = lain_icons .. "0.png"
+icons.misc.volmuted = lain_icons .. "0.png"
 
+local function change_icons_color(icons)
+    for i, icon in pairs(icons) do
+        icons[i] = gears_color.recolor_image(icons[i], icons_color)
+    end
+end
+change_icons_color(icons.tag)
+change_icons_color(icons.number)
+change_icons_color(icons.misc)
+
+--icons.tag[1] = gears_color.recolor_image(icons.tag[1], "#FF0000")
 return icons

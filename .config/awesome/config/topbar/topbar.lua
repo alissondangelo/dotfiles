@@ -61,14 +61,14 @@ awful.screen.connect_for_each_screen(function(s)
     --SysTray--------------------------------------------------
     s.systray = wibox.widget.systray()
     s.systray.visible = false
-    s.systrayicon = wibox.widget.imagebox(icons.systrayoff)
-    topbar_buttons.systray(s.systrayicon, s.systray, icons.systrayon, icons.systrayoff)
+    s.systrayicon = wibox.widget.imagebox(icons.misc.systrayoff)
+    topbar_buttons.systray(s.systrayicon, s.systray, icons.misc.systrayon, icons.misc.systrayoff)
 
 	--Binary clock---------------------------------------------
     s.binclock = wibox.widget(binclock_widget{
-        height = dpi(20),
+        height = dpi(24),
         show_seconds = true,
-        color_active = "#CCCCCC",
+        color_active = beautiful.fg_focus,
         color_inactive = "#555555"
     })
 
@@ -99,8 +99,8 @@ awful.screen.connect_for_each_screen(function(s)
         settings = function()
             local index, perc = "", tonumber(volume_now.level) or 0
             if volume_now.status == "off" then
-                s.volicon1.image = icons.volmuted
-                s.volicon2.image = icons.volmuted
+                s.volicon1.image = icons.misc.volmuted
+                s.volicon2.image = icons.misc.volmuted
             else
                 s.volicon1.image = icons.number[math.floor(perc/10)]
                 s.volicon2.image = icons.number[(perc%10)]
