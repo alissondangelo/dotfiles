@@ -71,13 +71,16 @@ awful.rules.rules = {
     {
         rule_any = {
             class = {
-                "Gimp",
+                class = {
+                    "Gimp*",
+                    "inkscape"
+                },
+                role = "gimp-image-window"
             },
         },
         properties = {maximized = true}
     },
-
-
+    
     --Specific Tag clients---------------------------------------
     {
         rule_any = {
