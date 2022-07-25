@@ -147,10 +147,14 @@ local globalkeys = mytable.join(
         end,
         {description = "Volume toggle", group = "media"}
     ),
+    awful.key( { modkey           }, "KP_Divide",
+        function()
+            awful.spawn.with_shell("volume-control.sh mic_toggle")
+        end,
+        {description = "(un)mute microphone", group = "volume"}),
     awful.key({ modkey,           }, "KP_Decimal",
         function ()
             awful.spawn.with_shell("pavucontrol")
-            s.volume.update()
         end,
         {description = "pavucontrol", group = "media"}
     ),
