@@ -1,7 +1,7 @@
 local awful = require("awful")
 local dpi = require("beautiful.xresources").apply_dpi
 local helpers = {}
-
+local useless_gap = require("beautiful").useless_gap
 
 -- Resize DWIM (Do What I Mean)--------------------------------
 -- Resize client or factor
@@ -42,7 +42,7 @@ local direction_translate = {
 }
 function helpers.move_to_edge(c, direction)
     local old = c:geometry()
-    local new = awful.placement[direction_translate[direction]](c, {honor_padding = true, honor_workarea = true, margins = beautiful.useless_gap * 2, pretend = true})
+    local new = awful.placement[direction_translate[direction]](c, {honor_padding = true, honor_workarea = true, margins = useless_gap * 2, pretend = true})
     if direction == "up" or direction == "down" then
         c:geometry({ x = old.x, y = new.y })
     else
