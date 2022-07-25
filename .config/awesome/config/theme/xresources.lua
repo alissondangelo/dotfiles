@@ -18,14 +18,14 @@ local icons = os.getenv("HOME") .. "/.config/awesome/config/theme/icons/layout/"
 --font------------------------------------------------------------------------------
 local font = "Roboto Mono"
 local font_size = "12"
-theme.font          = font .. " Light " .. font_size
+theme.font          = font .. " Medium " .. font_size
 local font_bold     = font .. " Bold " .. font_size
 
 --bg_colors-------------------------------------------------------------------------
-theme.bg_normal     = xrdb.background .. "88"
+theme.bg_normal     = xrdb.background .. "99"
 theme.bg_focus      = xrdb.color4
 theme.bg_urgent     = "#AA0000"
-theme.bg_minimize   = xrdb.color8 .. "44"
+theme.bg_minimize   = xrdb.color1 .. "44"
 theme.bg_systray    = theme.bg_focus
 --fg_colors-------------------------------------------------------------------------
 theme.fg_normal     = xrdb.color8
@@ -48,7 +48,6 @@ local tasklist_border_width = 1
 theme.tooltip_fg = theme.fg_normal
 theme.tooltip_bg = theme.bg_normal
 theme.tooltip_border_color = theme.border_focus
-
 
 --helper shape maker-----------------------------------------------------------------
 local rounded_rect_shape = function(cr,w,h)
@@ -76,10 +75,10 @@ theme.tasklist_shape_border_color = theme.bg_focus .. "44"
 --focus color
 theme.tasklist_fg_focus = theme.fg_focus
 theme.tasklist_bg_focus = theme.border_focus .. "44"
-theme.tasklist_shape_border_color_focus = theme.border_focus
+theme.tasklist_shape_border_color_focus = theme.border_focus .."AA"
 theme.tasklist_font_focus = font_bold
 --minimized
-theme.tasklist_shape_border_color_minimized = xrdb.color8 .. "33"
+theme.tasklist_shape_border_color_minimized = xrdb.color1 .. "66"
 --shape
 theme.tasklist_shape = rounded_rect_shape
 theme.tasklist_shape_focus = rounded_rect_shape
