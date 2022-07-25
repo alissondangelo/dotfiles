@@ -1,7 +1,5 @@
 xrdb -merge ~/.Xresources &
 
-wal -R &
-
 numlockx & 
 
 xset s 300 & 
