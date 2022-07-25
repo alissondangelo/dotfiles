@@ -23,7 +23,7 @@
     background-color: @background;
     background: {background};
     foreground: {foreground};
-    border-color: @selected-active-background;
+    border-color: {color6};
     spacing: 2;
 }}
 
