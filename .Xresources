@@ -51,3 +51,4 @@ Xft.autohint: true
 Xft.hintstyle: hintfull
 Xft.lcdfilter: lcdfilter
 
+#include ".cache/wal/colors.Xresources"
