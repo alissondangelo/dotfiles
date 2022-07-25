@@ -1,27 +1,20 @@
 #!/bin/bash
 # Control volume
-# Requires pulseaudio
-# AwesomeWM: Only sends a notification if the sidebar is not visible
-# --------------------------
-
-# Steps for raising/lowering volume
-STEP=1
-BIG_STEP=25
 
 if [[ "$1" = "up" ]]; then
-    pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ +$STEP%
-elif [[ "$1" = "UP" ]]; then
-    pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ +$BIG_STEP%
+    amixer set Master 1%+
+    VOL="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
+    notify-send "${VOL}%" -r 1 --urgency low
 elif [[ "$1" = "down" ]]; then
-    pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ -$STEP%
-elif [[ "$1" = "DOWN" ]]; then
-    pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ -$BIG_STEP%
+    amixer set Master 1%-
+    VOL="$(amixer get Master | tail -n1 | sed -r 's/.*\[(.*)%\].*/\1/')"
+    notify-send "${VOL}%" -r 1 --urgency low
 elif [[ "$1" = "toggle" ]]; then
     pactl set-sink-mute @DEFAULT_SINK@ toggle
-    notify-send 'Volume toggle.' --urgency low
-elif [[ "$1" = "reset" ]]; then
-    pactl set-sink-mute @DEFAULT_SINK@ 0 && pactl set-sink-volume @DEFAULT_SINK@ 50%
+    notify-send 'Volume toggle.' -r 1 --urgency low
+elif [[ "$1" = "mic_toggle" ]]; then
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+    notify-send $(pactl get-source-mute @DEFAULT_SOURCE@) -r 1 --urgency low
 else
     echo "No argument."
 fi
-
