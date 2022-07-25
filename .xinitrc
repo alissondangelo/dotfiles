@@ -1,9 +1,13 @@
 xrdb -merge ~/.Xresources &
 
+wal -R &
+
 numlockx & 
 
-xset s 300 & #dim the screen after 60 sec off inactivity 
+xset s 300 & 
 
 sudo nvidia-smi -pl 65 & 
+
+sleep 0.5 &
 
 exec awesome 
