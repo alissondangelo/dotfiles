@@ -1,8 +1,3 @@
----------------------------------------------
--- Awesome theme which follows xrdb config --
---   by Yauhen Kirylau                    --
----------------------------------------------
-
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
 local dpi = xresources.apply_dpi
@@ -52,14 +47,6 @@ theme.tooltip_fg = theme.fg_normal
 theme.tooltip_bg = theme.bg_normal
 theme.tooltip_border_color = theme.border_focus
 
--- There are other variable sets
--- overriding the default one when
--- defined, the sets are:
--- taglist_[bg|fg|shape|shape_border_color|shape_border_width]_[focus|urgent|occupied|empty|volatile]
--- tasklist_[bg|fg|shape|shape_border_color|shape_border_width]_[focus|urgent|minimized]
--- titlebar_[bg|fg]_[normal|focus]
--- tooltip_[font|opacity|fg_color|bg_color|border_width|border_color]
--- mouse_finder_[color|timeout|animate_timeout|radius|factor]
 
 --helper shape maker-----------------------------------------------------------------
 local rounded_rect_shape = function(cr,w,h)
@@ -134,37 +121,18 @@ theme.tasklist_widget_template = {
 }
 
 --menu------------------------------------------------------------------------------
--- Variables set for theming the menu:
--- menu_[bg|fg]_[normal|focus]
--- menu_[border_color|border_width]
--- theme.menu_submenu_icon = themes_path.."default/submenu.png"
 theme.menu_height = dpi(24)
 theme.menu_width  = dpi(150)
 theme.menu_border_color = theme.border_focus
 theme.menu_fg_focus = theme.fg_focus
 theme.menu_fg_normal = theme.bg_focus
--- You can add as many variables as
--- you wish and access them by using
--- beautiful.variable in your rc.lua
--- theme.bg_widget = "#cc0000"
 
-
--- Recolor Layout icons:
+-- Recolor Layout icons and set them-------------------------------------------------
 theme = theme_assets.recolor_layout(theme, theme.fg_normal)
 theme.layout_centerwork = gears_color.recolor_image(icons .. "centerwork.png" , theme.fg_normal)
 
--- Define the icon theme for application icons. If not set then the icons
+-- Define the icon theme for application icons. If not set then the icons------------
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 
--- Try to determine if we are running light or dark colorscheme:
-local bg_numberic_value = 0;
-for s in theme.bg_normal:gmatch("[a-fA-F0-9][a-fA-F0-9]") do
-    bg_numberic_value = bg_numberic_value + tonumber("0x"..s);
-end
-local is_dark_bg = (bg_numberic_value < 383)
-
---theme.layout_centerwork = theme.layout_floating
 return theme
-
--- vim: filetype=lua:expandtab:shiftwidth=4:tabstop=8:softtabstop=4:textwidth=80
