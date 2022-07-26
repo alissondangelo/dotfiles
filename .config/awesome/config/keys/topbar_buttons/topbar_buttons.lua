@@ -35,7 +35,9 @@ local topbar_buttons = {
         awful.button({ }, 1, function (c)
                 if c == client.focus then
                     c.minimized = true
+                    beautiful.backup = beautiful.bg_minimize
                 else
+                    beautiful.backup = beautiful.tasklist_bg_focus
                     c:emit_signal(
                         "request::activate",
                         "tasklist",

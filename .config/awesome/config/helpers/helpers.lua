@@ -1,4 +1,5 @@
 local gears_shape = require("gears.shape")
+local beautiful = require("beautiful")
 
 local helpers = {}
 
@@ -10,7 +11,7 @@ helpers.mouse_hover = function(wid, color)
             w.cursor = "hand2"
         end
         if wid.bg ~= color then
-            wid.backup     = wid.bg
+            beautiful.backup     = wid.bg
             wid.has_backup = true
         end
             wid.bg = color
@@ -20,7 +21,7 @@ helpers.mouse_hover = function(wid, color)
         if w then
             w.cursor = "left_ptr"
         end
-        if wid.has_backup then wid.bg = wid.backup end
+        if wid.has_backup then wid.bg = beautiful.backup end
     end)
 end
 
