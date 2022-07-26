@@ -66,6 +66,44 @@ theme.taglist_bg_focus = theme.border_focus .. "AA"
 --disable squares
 theme.taglist_squares_sel = nil
 theme.taglist_squares_unsel = nil
+--template
+theme.taglist_widget_template = {
+    {
+        {
+            {
+                {
+                    id     = 'icon_role',
+                    widget = wibox.widget.imagebox,
+                },
+                margins = 0,
+                widget  = wibox.container.margin,
+            },
+            layout = wibox.layout.fixed.horizontal,
+        },
+        left  = 5,
+        right = 5,
+        widget = wibox.container.margin
+    },
+    id     = 'background_role',
+    widget = wibox.container.background,
+    --Add support for hover colors and an index label-----------
+    create_callback = function(self, c3, index, objects) --luacheck: no unused args
+    self:get_children_by_id('icon_role')[1].markup = '<b> '..index..' </b>'
+    self:connect_signal('mouse::enter', function()
+        if self.bg ~= theme.fg_focus then
+            self.backup     = self.bg
+            self.has_backup = true
+        end
+        self.bg = theme.fg_focus
+    end)
+    self:connect_signal('mouse::leave', function()
+        if self.has_backup then self.bg = self.backup end
+    end)
+    end,
+    update_callback = function(self, c3, index, objects) --luacheck: no unused args
+        self:get_children_by_id('icon_role')[1].markup = '<b> '..index..' </b>'
+    end,
+}
 
 --tasklist--------------------------------------------------------------------------
 --normal color

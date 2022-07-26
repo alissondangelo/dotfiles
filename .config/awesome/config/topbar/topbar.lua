@@ -16,7 +16,7 @@ awful.screen.connect_for_each_screen(function(s)
     --tags--------------------------------------------------------------------------
     for i = 1, 9, 1 do
         awful.tag.add(i, {
-            icon = icons.tag[i],
+            icon = icons[i],
             icon_only = true,
             layout = awful.layout.suit.spiral.dwindle,
             screen = s,
@@ -35,7 +35,8 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytaglist = awful.widget.taglist {
         screen  = s,
         filter  = awful.widget.taglist.filter.all,
-        buttons = topbar_buttons.taglist
+        buttons = topbar_buttons.taglist,
+        widget_template = beautiful.taglist_widget_template,
     }
     -- and apply shape to it
     --[[if beautiful.taglist_shape_container then
@@ -61,8 +62,8 @@ awful.screen.connect_for_each_screen(function(s)
     --SysTray-------------------------------------------------------------------------
     s.systray = wibox.widget.systray()
     s.systray.visible = false
-    s.systrayicon = wibox.widget.imagebox(icons.misc.systrayoff)
-    topbar_buttons.systray(s.systrayicon, s.systray, icons.misc.systrayon, icons.misc.systrayoff)
+    s.systrayicon = wibox.widget.imagebox(icons.systrayoff)
+    topbar_buttons.systray(s.systrayicon, s.systray, icons.systrayon, icons.systrayoff)
 
 	--Binary clock--------------------------------------------------------------------
     s.binclock = wibox.widget(binclock_widget{
@@ -99,11 +100,11 @@ awful.screen.connect_for_each_screen(function(s)
         settings = function()
             local index, perc = "", tonumber(volume_now.level) or 0
             if volume_now.status == "off" then
-                s.volicon1.image = icons.misc.volmuted
-                s.volicon2.image = icons.misc.volmuted
+                s.volicon1.image = icons.volmuted
+                s.volicon2.image = icons.volmuted
             else
-                s.volicon1.image = icons.number[math.floor(perc/10)]
-                s.volicon2.image = icons.number[(perc%10)]
+                s.volicon1.image = icons[math.floor(perc/10)]
+                s.volicon2.image = icons[(perc%10)]
             end
     end})
     topbar_buttons.volume_widget(s.volicon1, s.volume)
