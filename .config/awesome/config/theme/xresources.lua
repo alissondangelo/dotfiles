@@ -13,7 +13,8 @@ local awful_widget_clienticon = require("awful.widget.clienticon")
 local theme = dofile(themes_path.."default/theme.lua")
 -- load vector assets' generators for this theme
 
-local icons = os.getenv("HOME") .. "/.config/awesome/config/theme/icons/layout/"
+local icons_layout = os.getenv("HOME") .. "/.config/awesome/config/theme/icons/layout/"
+local icons_topbar = require("config.theme.icons.topbar.icons_binary")
 
 --font------------------------------------------------------------------------------
 local font = "Roboto Mono"
@@ -183,11 +184,17 @@ theme.menu_border_color = theme.border_focus
 theme.menu_fg_focus = theme.fg_focus
 theme.menu_fg_normal = theme.bg_focus
 
--- Recolor Layout icons and set them-------------------------------------------------
+--icons-----------------------------------------------------------------------------
+-- Recolor Layout icons and set them------------------------------------------------
 theme = theme_assets.recolor_layout(theme, theme.fg_normal)
-theme.layout_centerwork = gears_color.recolor_image(icons .. "centerwork.png" , theme.fg_normal)
-
--- Define the icon theme for application icons. If not set then the icons------------
+theme.layout_centerwork = gears_color.recolor_image(icons_layout .. "centerwork.png" , theme.fg_normal)
+--topbar_icons----------------------------------------------------------------------
+--change icons color--
+for i, icon in pairs(icons_topbar) do
+    icons_topbar[i] = gears_color.recolor_image(icons_topbar[i], theme.fg_normal)
+end
+theme.icons_topbar = icons_topbar
+-- Define the icon theme for application icons. If not set then the icons-----------
 -- from /usr/share/icons and /usr/share/icons/hicolor will be used.
 theme.icon_theme = nil
 

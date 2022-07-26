@@ -1,6 +1,4 @@
-local my_icons = os.getenv("HOME") .. "/.config/awesome/config/topbar/iconcharacters/binary/"
-local gears_color = require("gears.color")
-local icons_color = require("beautiful").fg_normal
+local my_icons = os.getenv("HOME") .. "/.config/awesome/config/theme/icons/topbar/binary/"
 
 local icons = {}
 
@@ -24,10 +22,5 @@ icons.systrayoff = my_icons .. "0.png"
 
 --volume icons-------------------------------------------------
 icons.volmuted = my_icons .. "0.png"
-
---change icons color-------------------------------------------
-for i, icon in pairs(icons) do
-    icons[i] = gears_color.recolor_image(icons[i], icons_color)
-end
 
 return icons

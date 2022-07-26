@@ -10,14 +10,12 @@ local volume_widget   = require("config.topbar.widgets.volume")
 local binclock_widget = require("config.topbar.widgets.binclock")
 local calendar_widget = require("config.topbar.widgets.calendar")
 
-local icons = require("config.topbar.iconcharacters.icons_binary")
-
 awful.screen.connect_for_each_screen(function(s)
 
     --tags--------------------------------------------------------------------------
     for i = 1, 9, 1 do
         awful.tag.add(i, {
-            icon = icons[i],
+            icon = beautiful.icons_topbar[i],
             icon_only = true,
             layout = awful.layout.suit.spiral.dwindle,
             screen = s,
@@ -65,7 +63,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.systray.visible = false
     s.systray_widget = wibox.container.background(
         wibox.widget({
-            image = icons.systrayoff,
+            image = beautiful.icons_topbar.systrayoff,
             widget = wibox.widget.imagebox
         }),
         nil,
@@ -75,7 +73,7 @@ awful.screen.connect_for_each_screen(function(s)
             )
         end
     )
-    topbar_buttons.systray(s.systray_widget, s.systray, icons.systrayon, icons.systrayoff)
+    topbar_buttons.systray(s.systray_widget, s.systray, beautiful.icons_topbar.systrayon, beautiful.icons_topbar.systrayoff)
     s.systray_widget:connect_signal('mouse::enter', function()
             if s.systray_widget.bg ~= beautiful.hover_color then
                 s.systray_widget.backup     = s.systray_widget.bg
@@ -111,8 +109,8 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     --volume------------------------------------------------------------------------
-    s.volicon1 = wibox.widget.imagebox(icons.volmuted)
-    s.volicon2 = wibox.widget.imagebox(icons.volmuted)
+    s.volicon1 = wibox.widget.imagebox(beautiful.icons_topbar.volmuted)
+    s.volicon2 = wibox.widget.imagebox(beautiful.icons_topbar.volmuted)
     s.volicon = {
         s.volicon1,
         s.volicon2
@@ -122,11 +120,11 @@ awful.screen.connect_for_each_screen(function(s)
         settings = function()
             local index, perc = "", tonumber(volume_now.level) or 0
             if volume_now.status == "off" then
-                s.volicon1.image = icons.volmuted
-                s.volicon2.image = icons.volmuted
+                s.volicon1.image = beautiful.icons_topbar.volmuted
+                s.volicon2.image = beautiful.icons_topbar.volmuted
             else
-                s.volicon1.image = icons[math.floor(perc/10)]
-                s.volicon2.image = icons[(perc%10)]
+                s.volicon1.image = beautiful.icons_topbar[math.floor(perc/10)]
+                s.volicon2.image = beautiful.icons_topbar[(perc%10)]
             end
     end})
     topbar_buttons.volume_widget(s.volicon1, s.volume)
