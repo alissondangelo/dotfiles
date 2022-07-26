@@ -8,6 +8,7 @@ local gears_color = require("gears.color")
 local gears_shape = require("gears.shape")
 local wibox = require("wibox")
 local awful_widget_clienticon = require("awful.widget.clienticon")
+local helpers = require("config.topbar.helpers")
 
 -- inherit default theme
 local theme = dofile(themes_path.."default/theme.lua")
@@ -93,24 +94,7 @@ theme.taglist_widget_template = {
     --Add support for hover colors and an index label-----------
     create_callback = function(self, c3, index, objects) --luacheck: no unused args
         self:get_children_by_id('icon_role')[1].markup = '<b> '..index..' </b>'
-        self:connect_signal('mouse::enter', function()
-            local w = _G.mouse.current_wibox
-            if w then
-                w.cursor = "hand2"
-            end
-            if self.bg ~= theme.taglist_hover_color then
-                self.backup     = self.bg
-                self.has_backup = true
-            end
-            self.bg = theme.taglist_hover_color
-        end)
-        self:connect_signal('mouse::leave', function()
-            local w = _G.mouse.current_wibox
-            if w then
-                w.cursor = "left_ptr"
-            end
-            if self.has_backup then self.bg = self.backup end
-        end)
+        helpers.mouse_hover(self, theme.taglist_hover_color)
     end,
     update_callback = function(self, c3, index, objects) --luacheck: no unused args
         self:get_children_by_id('icon_role')[1].markup = '<b> '..index..' </b>'
@@ -169,16 +153,7 @@ theme.tasklist_widget_template = {
     --Add support for hover colors and an index label-----------
     create_callback = function(self, c, index, objects) --luacheck: no unused args
         self:get_children_by_id('clienticon')[1].client = c
-        self:connect_signal('mouse::enter', function()
-            if self.bg ~= theme.tasklist_hover_color then
-                self.backup     = self.bg
-                self.has_backup = true
-            end
-            self.bg = theme.tasklist_hover_color
-        end)
-        self:connect_signal('mouse::leave', function()
-            if self.has_backup then self.bg = self.backup end
-        end)
+        helpers.mouse_hover(self, theme.tasklist_hover_color)
     end,
     update_callback = function(self, c)
         self:get_children_by_id('clienticon')[1].client = c
