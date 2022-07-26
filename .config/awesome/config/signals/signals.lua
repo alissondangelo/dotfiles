@@ -1,7 +1,7 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 
--- Signal function to execute when a new client appears---------
+-- Signal function to execute when a new client appears-----------------------------
 client.connect_signal("manage", function (c)
     -- Set the windows at the slave,
     -- i.e. put it at the end of others instead of setting it master.
@@ -14,7 +14,7 @@ client.connect_signal("manage", function (c)
     end
 end)
 
--- Enable sloppy focus, so that focus follows mouse--------------
+-- Enable sloppy focus, so that focus follows mouse---------------------------------
 client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = false})
 end)
@@ -23,7 +23,7 @@ client.connect_signal("unfocus", function(c)
     c.border_color = beautiful.border_normal
 end)
 
--- No border for maximized clients--------------------------------
+-- No border for maximized clients--------------------------------------------------
 function border_adjust(c)
     if c.maximized then -- no borders if only 1 client visible
         c.border_width = 0
