@@ -8,7 +8,7 @@ local gears_color = require("gears.color")
 local gears_shape = require("gears.shape")
 local wibox = require("wibox")
 local awful_widget_clienticon = require("awful.widget.clienticon")
-local helpers = require("config.topbar.helpers")
+local helpers = require("config.theme.helpers")
 
 -- inherit default theme
 local theme = dofile(themes_path.."default/theme.lua")
