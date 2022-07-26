@@ -2,6 +2,7 @@ local awful = require("awful")
 local mytable = require("gears.table")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local naughty = require("naughty")
+local beautiful = require("beautiful")
 
 require("awful.hotkeys_popup.keys")
 
@@ -113,6 +114,7 @@ local globalkeys = mytable.join(
     awful.key({ modkey,           }, "=",
         function ()
             s.systray.visible = not s.systray.visible
+            s.systray_image.image = beautiful.icons_topbar[s.systray.visible]
         end,
         {description = "toggle tray", group = "awesome"}),
     awful.key({ modkey,           }, "BackSpace",

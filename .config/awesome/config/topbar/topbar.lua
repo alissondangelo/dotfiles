@@ -131,7 +131,7 @@ awful.screen.connect_for_each_screen(function(s)
     }
     s.systray = wibox.widget.systray()
     s.systray.visible = false
-    topbar_buttons.systray(s.systray_image, s.systray_button, s.systray)
+    topbar_buttons.systray()
     helpers.mouse_hover(s.systray_button, beautiful.hover_color)
 
 	--Binary clock--------------------------------------------------------------------

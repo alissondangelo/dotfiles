@@ -4,6 +4,8 @@ local beautiful = require("beautiful")
 
 local modkey = require('config.keys.mod_keys').modKey
 
+local s = awful.screen.focused()
+
 local topbar_buttons = {
     --taglist-----------------------------------------------------------------------
     taglist = mytable.join(
@@ -93,13 +95,11 @@ local topbar_buttons = {
     end,
 
     --systray-----------------------------------------------------------------------
-    systray = function (systray_image, tray_widget, tray)
-        tray_widget:buttons(mytable.join(
+    systray = function ()
+        s.systray_button:buttons(mytable.join(
             awful.button({}, 1, function()
-                tray.visible = not tray.visible
-                systray_image.image = beautiful.icons_topbar[tray.visible]
-                --local bool_to_number={ [true]=1, [false]=0 }
-                --awful.spawn("notify-send " .. bool_to_number[tray.visible])
+                s.systray.visible = not s.systray.visible
+                s.systray_image.image = beautiful.icons_topbar[s.systray.visible]
             end)
         ))
     end,
