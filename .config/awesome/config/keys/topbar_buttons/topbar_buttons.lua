@@ -93,10 +93,13 @@ local topbar_buttons = {
     end,
 
     --systray-----------------------------------------------------------------------
-    systray = function (tray_widget, tray, icon_on, icon_off)
+    systray = function (systray_image, tray_widget, tray)
         tray_widget:buttons(mytable.join(
             awful.button({}, 1, function()
                 tray.visible = not tray.visible
+                systray_image.image = beautiful.icons_topbar[tray.visible]
+                --local bool_to_number={ [true]=1, [false]=0 }
+                --awful.spawn("notify-send " .. bool_to_number[tray.visible])
             end)
         ))
     end,

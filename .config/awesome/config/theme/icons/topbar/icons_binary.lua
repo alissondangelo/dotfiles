@@ -17,8 +17,8 @@ icons[9]  = my_icons .. "9.png"
 icons[10] = my_icons .. "1.png"
 
 --hide systray icons-------------------------------------------
-icons.systrayon  = my_icons .. "1.png"
-icons.systrayoff = my_icons .. "0.png"
+icons[true]  = my_icons .. "1.png"
+icons[false] = my_icons .. "0.png"
 
 --volume icons-------------------------------------------------
 icons.volmuted = my_icons .. "0.png"

@@ -59,12 +59,10 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     --SysTray-------------------------------------------------------------------------
+    s.systray_image = wibox.widget.imagebox(beautiful.icons_topbar[false])
     s.systray_button = wibox.widget {
         {
-            {
-                image = beautiful.icons_topbar.systrayoff,
-                widget = wibox.widget.imagebox
-            },
+            s.systray_image,
             left  = 5,
             right = 5,
             widget = wibox.container.margin
@@ -75,7 +73,7 @@ awful.screen.connect_for_each_screen(function(s)
     }
     s.systray = wibox.widget.systray()
     s.systray.visible = false
-    topbar_buttons.systray(s.systray_button, s.systray, beautiful.icons_topbar.systrayon, beautiful.icons_topbar.systrayoff)
+    topbar_buttons.systray(s.systray_image, s.systray_button, s.systray)
     helpers.mouse_hover(s.systray_button, beautiful.hover_color)
 
 	--Binary clock--------------------------------------------------------------------
