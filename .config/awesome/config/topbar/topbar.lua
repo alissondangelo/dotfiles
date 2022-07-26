@@ -102,13 +102,29 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     --volume------------------------------------------------------------------------
-    s.volicon1 = wibox.widget.imagebox(beautiful.icons_topbar.volmuted)
-    s.volicon2 = wibox.widget.imagebox(beautiful.icons_topbar.volmuted)
-    s.volicon = {
-        s.volicon1,
-        s.volicon2
+    s.volicon1 = wibox.widget {
+        image = beautiful.icons_topbar.volmuted,
+        widget = wibox.widget.imagebox,
     }
-    s.volicon.layout = wibox.layout.fixed.horizontal
+    s.volicon2 = wibox.widget {
+        image = beautiful.icons_topbar.volmuted,
+        widget = wibox.widget.imagebox,
+    }
+    s.volicon = wibox.widget {
+        {
+            {
+                s.volicon1,
+                s.volicon2,
+                layout = wibox.layout.fixed.horizontal,
+            },
+            left  = dpi(5),
+            right = dpi(5),
+            widget  = wibox.container.margin,
+
+        },
+        shape = helpers.rounded_rect_shape(3),
+        widget = wibox.container.background,
+    }
     s.volume = volume_widget({
         settings = function()
             local index, perc = "", tonumber(volume_now.level) or 0
@@ -120,8 +136,8 @@ awful.screen.connect_for_each_screen(function(s)
                 s.volicon2.image = beautiful.icons_topbar[(perc%10)]
             end
     end})
-    topbar_buttons.volume_widget(s.volicon1, s.volume)
-    topbar_buttons.volume_widget(s.volicon2, s.volume)
+    topbar_buttons.volume_widget(s.volicon, s.volume)
+    helpers.mouse_hover(s.volicon, beautiful.hover_color)
 
     --Create the wibox--------------------------------------------------------------
     s.mywibox = awful.wibar({ position = "top", screen = s, height = "23" })
@@ -139,7 +155,7 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            spacing = 10,
+            spacing = 5,
             s.systray,
             s.systray_button,
             s.volicon,
