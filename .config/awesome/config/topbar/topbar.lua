@@ -130,11 +130,6 @@ awful.screen.connect_for_each_screen(function(s)
     topbar_buttons.volume_widget(s.volicon1, s.volume)
     topbar_buttons.volume_widget(s.volicon2, s.volume)
 
-    --separator---------------------------------------------------------------------
-    local function separator(width)
-        return wibox.widget({forced_width = dpi(width)})
-    end
-
     --Create the wibox--------------------------------------------------------------
     s.mywibox = awful.wibar({ position = "top", screen = s, height = "23" })
 
@@ -143,21 +138,18 @@ awful.screen.connect_for_each_screen(function(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
+            spacing = 5,
             s.mylayoutbox,
-            separator(5),
             s.mytaglist,
-            separator(10),
             s.mypromptbox,
         },
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
+            spacing = 10,
             s.systray,
-            separator(10),
             s.systray_widget,--wibox.widget.systray(),
-            separator(10),
             s.volicon,
-            separator(10),
             s.binclock,
         },
     }
