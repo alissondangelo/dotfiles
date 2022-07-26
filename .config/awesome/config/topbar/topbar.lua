@@ -79,12 +79,16 @@ awful.screen.connect_for_each_screen(function(s)
     helpers.mouse_hover(s.systray_button, beautiful.hover_color)
 
 	--Binary clock--------------------------------------------------------------------
-    s.binclock = wibox.widget(binclock_widget{
-        height = dpi(24),
-        show_seconds = true,
-        color_active = beautiful.fg_focus,
-        color_inactive = "#555555"
-    })
+    s.binclock = wibox.widget{
+        binclock_widget{
+            height = dpi(24),
+            show_seconds = true,
+            color_active = beautiful.fg_focus,
+            color_inactive = "#555555"
+        },
+        widget = wibox.container.background,
+    }
+    helpers.mouse_hover(s.binclock, beautiful.hover_color)
 
     --calendar----------------------------------------------------------------------
     s.cw = calendar_widget{
