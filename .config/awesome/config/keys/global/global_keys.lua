@@ -1,12 +1,15 @@
 local awful = require("awful")
 local mytable = require("gears.table")
 local hotkeys_popup = require("awful.hotkeys_popup")
+local naughty = require("naughty")
+
 require("awful.hotkeys_popup.keys")
 
 local modkey = require("config.keys.mod_keys").modKey
 local altkey = require("config.keys.mod_keys").altKey
 
 local s = awful.screen.focused()
+local calendar_aux = nil
 
 local globalkeys = mytable.join(
 
@@ -101,7 +104,9 @@ local globalkeys = mytable.join(
     -- topbar -----------------------------------------------------------------------
     awful.key({ modkey,           }, "-",
         function ()
+            naughty.destroy(calendar_aux)
             s.cw.show()
+            calendar_aux = s.cw.notification
             s.cw.notification = nil
         end,
         {description = "toggle calendar", group = "awesome"}),
