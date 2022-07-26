@@ -64,6 +64,7 @@ theme.taglist_hover_color = theme.hover_color
 theme.taglist_squares_sel = nil
 theme.taglist_squares_unsel = nil
 --template
+theme.backup = "#000000"
 theme.taglist_widget_template = {
     {
         {
@@ -86,7 +87,24 @@ theme.taglist_widget_template = {
     --Add support for hover colors and an index label-----------
     create_callback = function(self, c3, index, objects) --luacheck: no unused args
         self:get_children_by_id('icon_role')[1].markup = '<b> '..index..' </b>'
-        helpers.mouse_hover(self, theme.taglist_hover_color)
+        self:connect_signal('mouse::enter', function()
+        local w = _G.mouse.current_wibox
+        if w then
+            w.cursor = "hand2"
+        end
+        if theme.bg ~= theme.hover_color then
+            theme.backup     = self.bg
+            self.has_backup = true
+        end
+            self.bg = theme.hover_color
+        end)
+    self:connect_signal('mouse::leave', function()
+        local w = _G.mouse.current_wibox
+        if w then
+            w.cursor = "left_ptr"
+        end
+        if self.has_backup then self.bg = theme.backup end
+    end)
     end,
     update_callback = function(self, c3, index, objects) --luacheck: no unused args
         self:get_children_by_id('icon_role')[1].markup = '<b> '..index..' </b>'
