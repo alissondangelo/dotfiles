@@ -94,6 +94,10 @@ theme.taglist_widget_template = {
     create_callback = function(self, c3, index, objects) --luacheck: no unused args
         self:get_children_by_id('icon_role')[1].markup = '<b> '..index..' </b>'
         self:connect_signal('mouse::enter', function()
+            local w = _G.mouse.current_wibox
+            if w then
+                w.cursor = "hand2"
+            end
             if self.bg ~= theme.taglist_hover_color then
                 self.backup     = self.bg
                 self.has_backup = true
@@ -101,6 +105,10 @@ theme.taglist_widget_template = {
             self.bg = theme.taglist_hover_color
         end)
         self:connect_signal('mouse::leave', function()
+            local w = _G.mouse.current_wibox
+            if w then
+                w.cursor = "left_ptr"
+            end
             if self.has_backup then self.bg = self.backup end
         end)
     end,
