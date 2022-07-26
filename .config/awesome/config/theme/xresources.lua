@@ -5,10 +5,9 @@ local xrdb = xresources.get_current_theme()
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 local gears_color = require("gears.color")
-local gears_shape = require("gears.shape")
 local wibox = require("wibox")
 local awful_widget_clienticon = require("awful.widget.clienticon")
-local helpers = require("config.theme.helpers")
+local helpers = require("config.helpers")
 
 -- inherit default theme
 local theme = dofile(themes_path.."default/theme.lua")
@@ -53,16 +52,9 @@ theme.tooltip_fg = theme.fg_normal
 theme.tooltip_bg = theme.bg_normal
 theme.tooltip_border_color = theme.border_focus
 
---helper shape maker-----------------------------------------------------------------
-local rounded_rect_shape = function(cr,w,h)
-    gears_shape.rounded_rect(
-        cr, w, h, theme.border_radius
-    )
-end
-
 --tag list--------------------------------------------------------------------------
 --shape
-theme.taglist_shape = rounded_rect_shape
+theme.taglist_shape = helpers.rounded_rect_shape(3)
 --color
 theme.taglist_bg_occupied = xrdb.color3 .. "66"
 theme.taglist_bg_empty = "#00000000"
@@ -115,9 +107,9 @@ theme.tasklist_hover_color = theme.hover_color
 --minimized
 theme.tasklist_shape_border_color_minimized = xrdb.color1 .. "66"
 --shape
-theme.tasklist_shape = rounded_rect_shape
-theme.tasklist_shape_focus = rounded_rect_shape
-theme.tasklist_shape_minimized = rounded_rect_shape
+theme.tasklist_shape = helpers.rounded_rect_shape(3)
+theme.tasklist_shape_focus = helpers.rounded_rect_shape(3)
+theme.tasklist_shape_minimized = helpers.rounded_rect_shape(3)
 --border width
 theme.tasklist_shape_border_width = tasklist_border_width
 theme.tasklist_shape_border_width_focus = tasklist_border_width

@@ -1,7 +1,9 @@
+local gears_shape = require("gears.shape")
+
 local helpers = {}
 
 --change color and cursor on mouse hover--------------------------------------------
-function helpers.mouse_hover(wid, color)
+helpers.mouse_hover = function(wid, color)
     wid:connect_signal('mouse::enter', function()
         local w = _G.mouse.current_wibox
         if w then
@@ -21,4 +23,12 @@ function helpers.mouse_hover(wid, color)
         if wid.has_backup then wid.bg = wid.backup end
     end)
 end
+
+--shape maker-----------------------------------------------------------------------
+helpers.rounded_rect_shape = function(r)
+    return function(cr, w, h)
+        gears_shape.rounded_rect(cr, w, h, r or 3)
+    end
+end
+
 return helpers

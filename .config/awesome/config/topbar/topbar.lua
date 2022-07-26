@@ -2,9 +2,9 @@ local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi   = require("beautiful.xresources").apply_dpi
-local gears_shape = require("gears.shape")
 
 local topbar_buttons = require("config.keys.topbar_buttons")
+local helpers = require("config.helpers")
 
 local volume_widget   = require("config.topbar.widgets.volume")
 local binclock_widget = require("config.topbar.widgets.binclock")
@@ -59,31 +59,24 @@ awful.screen.connect_for_each_screen(function(s)
     }
 
     --SysTray-------------------------------------------------------------------------
+    s.systray_button = wibox.widget {
+        {
+            {
+                image = beautiful.icons_topbar.systrayoff,
+                widget = wibox.widget.imagebox
+            },
+            left  = 5,
+            right = 5,
+            widget = wibox.container.margin
+        },
+        bg = beautiful.bg_normal,
+        shape = helpers.rounded_rect_shape(3),
+        widget = wibox.container.background,
+    }
     s.systray = wibox.widget.systray()
     s.systray.visible = false
-    s.systray_widget = wibox.container.background(
-        wibox.widget({
-            image = beautiful.icons_topbar.systrayoff,
-            widget = wibox.widget.imagebox
-        }),
-        nil,
-        function(cr,w,h)
-            gears_shape.rounded_rect(
-                cr, w, h, 3
-            )
-        end
-    )
-    topbar_buttons.systray(s.systray_widget, s.systray, beautiful.icons_topbar.systrayon, beautiful.icons_topbar.systrayoff)
-    s.systray_widget:connect_signal('mouse::enter', function()
-            if s.systray_widget.bg ~= beautiful.hover_color then
-                s.systray_widget.backup     = s.systray_widget.bg
-                s.systray_widget.has_backup = true
-            end
-            s.systray_widget.bg = beautiful.hover_color
-        end)
-    s.systray_widget:connect_signal('mouse::leave', function()
-            if s.systray_widget.has_backup then s.systray_widget.bg = s.systray_widget.backup end
-    end)
+    topbar_buttons.systray(s.systray_button, s.systray, beautiful.icons_topbar.systrayon, beautiful.icons_topbar.systrayoff)
+    helpers.mouse_hover(s.systray_button, beautiful.hover_color)
 
 	--Binary clock--------------------------------------------------------------------
     s.binclock = wibox.widget(binclock_widget{
@@ -148,7 +141,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             spacing = 10,
             s.systray,
-            s.systray_widget,--wibox.widget.systray(),
+            s.systray_button,
             s.volicon,
             s.binclock,
         },
