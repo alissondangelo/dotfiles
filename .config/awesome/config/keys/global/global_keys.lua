@@ -10,7 +10,7 @@ local s = awful.screen.focused()
 
 local globalkeys = mytable.join(
 
-    -- Lock,Sleep,Restart,Shutdown ------------------------------------
+    -- Lock,Sleep,Restart,Shutdown -------------------------------------------------
     awful.key({ modkey,           }, "F8", function () awful.spawn(awesome.quit()) end,
         {description = "Logout", group = "system"}),
     awful.key({ modkey,           }, "F9", function () awful.spawn("slock") end,
@@ -22,19 +22,19 @@ local globalkeys = mytable.join(
     awful.key({ modkey,           }, "F12", function () awful.spawn("shutdown now") end,
         {description = "System Shutdown", group = "system"}),
 
-    -- screenshots ------------------------------------
-    awful.key( { }, "Print", function() awful.spawn("screenshot.sh") end,
+    -- screenshots -----------------------------------------------------------------
+    awful.key({                   }, "Print", function() awful.spawn("screenshot.sh") end,
         {description = "take full screenshot", group = "screenshots"}),
-    awful.key( { modkey  }, "Print", function() awful.spawn("screenshot.sh -s") end,
+    awful.key({ modkey,           }, "Print", function() awful.spawn("screenshot.sh -s") end,
         {description = "select area to capture", group = "screenshots"}),
-    awful.key( { modkey, "Shift" }, "Print", function() awful.spawn("screenshot.sh -c") end,
+    awful.key({ modkey, "Shift"   }, "Print", function() awful.spawn("screenshot.sh -c") end,
         {description = "select area to copy to clipboard", group = "screenshots"}),
-    awful.key( { modkey, "Control" }, "Print", function() awful.spawn("screenshot.sh -b") end,
+    awful.key({ modkey, "Control" }, "Print", function() awful.spawn("screenshot.sh -b") end,
         {description = "browse screenshots", group = "screenshots"}),
-    awful.key( { modkey, "Mod1"  }, "Print", function() awful.spawn("screenshot.sh -e") end,
+    awful.key({ modkey, altkey    }, "Print", function() awful.spawn("screenshot.sh -e") end,
         {description = "edit most recent screenshot with gimp", group = "screenshots"}),
 
-    -- internet ------------------------------------
+    -- internet --------------------------------------------------------------------
     awful.key({ modkey,           }, "b", function () awful.spawn(browser1) end,
         {description = "Browser 1 (Main)", group = "internet"}),
     awful.key({ modkey,           }, "v", function () awful.spawn(browser2) end,
@@ -44,7 +44,7 @@ local globalkeys = mytable.join(
     awful.key({ modkey,           }, "y", function () awful.spawn("freetube") end,
         {description = "Free Tube", group = "internet"}),
 
-    -- games ------------------------------------
+    -- games -----------------------------------------------------------------------
     awful.key({ modkey,           }, "g", function () awful.spawn("lutris") end,
         {description = "Lutris", group = "Games"}),
     awful.key({ modkey,           }, "s", function () awful.spawn("steam") end,
@@ -54,23 +54,23 @@ local globalkeys = mytable.join(
     awful.key({ modkey,           }, "t", function () awful.spawn("/usr/bin/java -jar /opt/tlauncher/tlauncher.jar") end,
         {description = "Minecraft (Tlauncher)", group = "games"}),
 
-    -- awesome ------------------------------------
+    -- awesome ---------------------------------------------------------------------
     awful.key({ modkey,           }, "w", function () awful.util.mymainmenu:show() end,
         {description = "show system menu", group = "awesome"}),
-     awful.key({ modkey, "Control" }, "r", awesome.restart,
+    awful.key({ modkey, "Control" }, "r", awesome.restart,
         {description = "reload awesome", group = "awesome"}),
     awful.key({ modkey, altkey    }, "q", awesome.quit,
         {description = "quit awesome", group = "awesome"}),
     awful.key({ modkey,           }, "F1",      hotkeys_popup.show_help,
         {description="show help", group="awesome"}),
 
-    -- layout keys ------------------------------------
+    -- layout keys -----------------------------------------------------------------
     awful.key({ modkey,           }, "space", function () awful.layout.inc( 1) end,
         {description = "select next", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1) end,
         {description = "select previous", group = "layout"}),
 
-    -- tag keys ------------------------------------
+    -- tag keys ---------------------------------------------------------------------
     awful.key({ modkey, altkey    }, "Left",   awful.tag.viewprev,
         {description = "view previous", group = "tag"}),
     awful.key({ modkey, altkey    }, "Right",  awful.tag.viewnext,
@@ -78,12 +78,12 @@ local globalkeys = mytable.join(
     awful.key({ modkey, altkey    }, "Escape", awful.tag.history.restore,
         {description = "go back", group = "tag"}),
 
-    -- launchers ------------------------------------
+    -- launchers -------------------------------------------------------------------
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
         {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Shift"   }, "Return", function () awful.spawn(terminal .. " --class floating") end,
         {description = "open a floating terminal", group = "launcher"}),
-    awful.key({ modkey, "Shift"}, "r", function () awful.screen.focused().mypromptbox:run() end,
+    awful.key({ modkey, "Shift"   }, "r", function () awful.screen.focused().mypromptbox:run() end,
         {description = "run prompt", group = "launcher"}),
     awful.key({ modkey,           }, "#94",
         function ()
@@ -98,24 +98,24 @@ local globalkeys = mytable.join(
     awful.key({ modkey,           }, "e", function () awful.spawn(fileManager) end,
         {description = "File Manager", group = "utilities"}),
 
-    -- topbar ------------------------------------
-    awful.key({ modkey }, "-",
+    -- topbar -----------------------------------------------------------------------
+    awful.key({ modkey,           }, "-",
         function ()
             s.cw.show()
             s.cw.notification = nil
         end,
         {description = "toggle calendar", group = "awesome"}),
-    awful.key({ modkey }, "=",
+    awful.key({ modkey,           }, "=",
         function ()
             s.systray.visible = not s.systray.visible
         end,
         {description = "toggle tray", group = "awesome"}),
-    awful.key({ modkey }, "BackSpace",
+    awful.key({ modkey,           }, "BackSpace",
         function ()
             s.mywibox.visible = not s.mywibox.visible
         end,
         {description = "toggle topbar", group = "awesome"}),
-    awful.key({ modkey, "Shift" }, "BackSpace",
+    awful.key({ modkey, "Shift"   }, "BackSpace",
         function ()
             s.mylayoutbox.visible = not s.mylayoutbox.visible
             s.mytasklist.visible = not s.mytasklist.visible
@@ -125,7 +125,7 @@ local globalkeys = mytable.join(
         end,
         {description = "toggle topbar cleaner mode", group = "awesome"}),
 
-    -- media ------------------------------------
+    -- media -------------------------------------------------------------------------
     awful.key({ modkey,           }, "KP_Add",
         function ()
             awful.spawn.with_shell("volume-control.sh up")
@@ -147,7 +147,7 @@ local globalkeys = mytable.join(
         end,
         {description = "Volume toggle", group = "media"}
     ),
-    awful.key( { modkey           }, "KP_Divide",
+    awful.key({ modkey,           }, "KP_Divide",
         function()
             awful.spawn.with_shell("volume-control.sh mic_toggle")
         end,
@@ -161,7 +161,7 @@ local globalkeys = mytable.join(
 
 
 
-    -- customization ------------------------------------
+    -- customization ------------------------------------------------------------------
     awful.key({ modkey, "Shift"   }, "w",
         function ()
             awful.spawn.with_shell("change_wallpaper_theme.sh")
@@ -169,31 +169,31 @@ local globalkeys = mytable.join(
         {description = "Change wallpaper and color scheme", group = "customization"}
     ),
 
-    ---{{{ client ------------------------------------
+    --client -----------------------------------------------------------------------
     -- Focus client by direction
-    awful.key({ modkey }, "j", function() awful.client.focus.bydirection("down") end,
+    awful.key({ modkey,            }, "j", function() awful.client.focus.bydirection("down") end,
         {description = "focus down", group = "client"}),
-    awful.key({ modkey }, "k", function() awful.client.focus.bydirection("up") end,
+    awful.key({ modkey,            }, "k", function() awful.client.focus.bydirection("up") end,
         {description = "focus up", group = "client"}),
-    awful.key({ modkey }, "h", function() awful.client.focus.bydirection("left") end,
+    awful.key({ modkey,            }, "h", function() awful.client.focus.bydirection("left") end,
         {description = "focus left", group = "client"}),
-    awful.key({ modkey }, "l", function() awful.client.focus.bydirection("right") end,
+    awful.key({ modkey,            }, "l", function() awful.client.focus.bydirection("right") end,
         {description = "focus right", group = "client"}),
-    awful.key({ modkey }, "Down", function() awful.client.focus.bydirection("down") end,
+    awful.key({ modkey,            }, "Down", function() awful.client.focus.bydirection("down") end,
         {description = "focus down", group = "client"}),
-    awful.key({ modkey }, "Up", function() awful.client.focus.bydirection("up") end,
+    awful.key({ modkey,            }, "Up", function() awful.client.focus.bydirection("up") end,
         {description = "focus up", group = "client"}),
-    awful.key({ modkey }, "Left", function() awful.client.focus.bydirection("left") end,
+    awful.key({ modkey,            }, "Left", function() awful.client.focus.bydirection("left") end,
         {description = "focus left", group = "client"}),
-    awful.key({ modkey }, "Right", function() awful.client.focus.bydirection("right") end,
+    awful.key({ modkey,            }, "Right", function() awful.client.focus.bydirection("right") end,
         {description = "focus right", group = "client"}),
-    -- client focus change by idx ------------------------------------
-    awful.key({ modkey,           }, "Tab", function () awful.client.focus.byidx( 1)  end,
+    -- client focus change by idx --------------------------------------------------
+    awful.key({ modkey,            }, "Tab", function () awful.client.focus.byidx( 1)  end,
         {description = "focus next by index", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "Tab", function () awful.client.focus.byidx(-1)  end,
+    awful.key({ modkey, "Shift"    }, "Tab", function () awful.client.focus.byidx(-1)  end,
         {description = "focus previous by index", group = "client"}),
-    -- kill all clients in current tab ------------------------------------
-    awful.key({ modkey, "Shift" }, "q",
+    -- kill all clients in current tab ---------------------------------------------
+    awful.key({ modkey, "Shift"    }, "q",
         function ()
             local clients = awful.screen.focused().clients
             for _, c in pairs(clients) do
@@ -201,8 +201,8 @@ local globalkeys = mytable.join(
             end
         end,
         {description = "kill all visible clients for the current tag", group = "client"}),
-    -- restore minimized ------------------------------------
-    awful.key({ modkey, "Shift" }, "n",
+    -- restore minimized -----------------------------------------------------------
+    awful.key({ modkey, "Shift"    }, "n",
               function ()
                   local c = awful.client.restore()
                   -- Focus restored client
@@ -211,7 +211,7 @@ local globalkeys = mytable.join(
                   end
               end,
         {description = "restore minimized", group = "client"}),
-    -- jump to urgent client ------------------------------------
+    -- jump to urgent client -------------------------------------------------------
     awful.key({ modkey,           }, "'",
         function ()
             uc = awful.client.urgent.get()
@@ -223,17 +223,16 @@ local globalkeys = mytable.join(
             end
         end,
         {description = "jump to urgent client", group = "client"}),
-    --- client}}} ------------------------------------
+    --client------------------------------------------------------------------------
 
-    ---{{{ gaps ------------------------------------
+    --gaps--------------------------------------------------------------------------
     awful.key({ modkey,           }, "]", function () awful.tag.incgap(1, nil) end,
               {description = "increment gaps size for the current tag", group = "gaps"}),
-    awful.key({ modkey            }, "[", function () awful.tag.incgap(-1, nil) end,
+    awful.key({ modkey,           }, "[", function () awful.tag.incgap(-1, nil) end,
               {description = "decrement gap size for the current tag", group = "gaps"}),
-    --- gaps}}} ------------------------------------
 
-    -- lua execute prompt ------------------------------------
-    awful.key({ modkey }, "x", function ()
+    -- lua execute prompt ----------------------------------------------------------
+    awful.key({ modkey,           }, "x", function ()
             awful.prompt.run {
                 prompt       = "Run Lua code: ",
                 textbox      = awful.screen.focused().mypromptbox.widget,
@@ -245,13 +244,13 @@ local globalkeys = mytable.join(
 
 )
 
--- Bind all key numbers to tags. ------------------------------------
+-- Bind all key numbers to tags. ---------------------------------------------------
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 9 do
     globalkeys = mytable.join(globalkeys,
-        -- View tag only. ------------------------------------
-        awful.key({ modkey }, "#" .. i + 9,
+        -- View tag only. ----------------------------------------------------------
+        awful.key({ modkey,           }, "#" .. i + 9,
             function ()
                 local screen = awful.screen.focused()
                 local tag = screen.tags[i]
@@ -260,7 +259,7 @@ for i = 1, 9 do
                 end
             end,
             {description = "view tag #"..i, group = "tag"}),
-        -- Toggle tag display. ------------------------------------
+        -- Toggle tag display. -----------------------------------------------------
         awful.key({ modkey, "Control" }, "#" .. i + 9,
             function ()
                 local screen = awful.screen.focused()
@@ -270,8 +269,8 @@ for i = 1, 9 do
                 end
             end,
             {description = "toggle tag #" .. i, group = "tag"}),
-        -- Move client to tag. ------------------------------------
-        awful.key({ modkey, "Shift" }, "#" .. i + 9,
+        -- Move client to tag. -----------------------------------------------------
+        awful.key({ modkey, "Shift"   }, "#" .. i + 9,
             function ()
                 if client.focus then
                     local tag = client.focus.screen.tags[i]
@@ -281,7 +280,7 @@ for i = 1, 9 do
                 end
             end,
             {description = "move focused client to tag #"..i, group = "tag"}),
-        -- Toggle tag on focused client. ------------------------------------
+        -- Toggle tag on focused client. -------------------------------------------
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
             function ()
                 if client.focus then
