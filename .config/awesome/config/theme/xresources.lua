@@ -6,7 +6,6 @@ local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 local gears_color = require("gears.color")
 local wibox = require("wibox")
-local awful_widget_clienticon = require("awful.widget.clienticon")
 local helpers = require("config.helpers")
 
 -- inherit default theme
@@ -65,34 +64,6 @@ theme.taglist_squares_sel = nil
 theme.taglist_squares_unsel = nil
 --template
 theme.backup = ""
-theme.taglist_widget_template = {
-    {
-        {
-            {
-                {
-                    id     = 'icon_role',
-                    widget = wibox.widget.imagebox,
-                },
-                margins = 0,
-                widget  = wibox.container.margin,
-            },
-            layout = wibox.layout.fixed.horizontal,
-        },
-        left  = 5,
-        right = 5,
-        widget = wibox.container.margin
-    },
-    id     = 'background_role',
-    widget = wibox.container.background,
-    --Add support for hover colors and an index label-----------
-    create_callback = function(self, c3, index, objects) --luacheck: no unused args
-        self:get_children_by_id('icon_role')[1].markup = '<b> '..index..' </b>'
-        helpers.mouse_hover(self, theme.tasklist_hover_color)
-    end,
-    update_callback = function(self, c3, index, objects) --luacheck: no unused args
-        self:get_children_by_id('icon_role')[1].markup = '<b> '..index..' </b>'
-    end,
-}
 
 --tasklist--------------------------------------------------------------------------
 --normal color
@@ -119,39 +90,6 @@ theme.tasklist_shape_border_width_minimized = tasklist_border_width
 theme.tasklist_spacing = tasklist_border_width
 --widget
 theme.tasklist_widget = wibox.widget
---template
-theme.tasklist_widget_template = {
-    {
-        {
-            {
-                {
-                    id     = 'clienticon',
-                    widget = awful_widget_clienticon,
-                },
-                margins = dpi(4),
-                widget  = wibox.container.margin,
-            },
-            {
-                id     = 'text_role',
-                widget = wibox.widget.textbox,
-            },
-            layout = wibox.layout.fixed.horizontal,
-        },
-        left  = dpi(2),
-        right = dpi(4),
-        widget = wibox.container.margin
-    },
-    id     = 'background_role',
-    widget = wibox.container.background,
-    --Add support for hover colors and an index label-----------
-    create_callback = function(self, c, index, objects) --luacheck: no unused args
-        self:get_children_by_id('clienticon')[1].client = c
-        helpers.mouse_hover(self, theme.tasklist_hover_color)
-    end,
-    update_callback = function(self, c)
-        self:get_children_by_id('clienticon')[1].client = c
-    end,
-}
 
 --menu------------------------------------------------------------------------------
 theme.menu_height = dpi(24)
