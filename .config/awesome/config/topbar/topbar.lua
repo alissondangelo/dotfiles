@@ -2,6 +2,7 @@ local awful = require("awful")
 local wibox = require("wibox")
 local beautiful = require("beautiful")
 local dpi   = require("beautiful.xresources").apply_dpi
+local gears_shape = require("gears.shape")
 
 local topbar_buttons = require("config.keys.topbar_buttons")
 
@@ -62,8 +63,29 @@ awful.screen.connect_for_each_screen(function(s)
     --SysTray-------------------------------------------------------------------------
     s.systray = wibox.widget.systray()
     s.systray.visible = false
-    s.systrayicon = wibox.widget.imagebox(icons.systrayoff)
-    topbar_buttons.systray(s.systrayicon, s.systray, icons.systrayon, icons.systrayoff)
+    s.systray_widget = wibox.container.background(
+        wibox.widget({
+            image = icons.systrayoff,
+            widget = wibox.widget.imagebox
+        }),
+        nil,
+        function(cr,w,h)
+            gears_shape.rounded_rect(
+                cr, w, h, 3
+            )
+        end
+    )
+    topbar_buttons.systray(s.systray_widget, s.systray, icons.systrayon, icons.systrayoff)
+    s.systray_widget:connect_signal('mouse::enter', function()
+            if s.systray_widget.bg ~= beautiful.hover_color then
+                s.systray_widget.backup     = s.systray_widget.bg
+                s.systray_widget.has_backup = true
+            end
+            s.systray_widget.bg = beautiful.hover_color
+        end)
+    s.systray_widget:connect_signal('mouse::leave', function()
+            if s.systray_widget.has_backup then s.systray_widget.bg = s.systray_widget.backup end
+    end)
 
 	--Binary clock--------------------------------------------------------------------
     s.binclock = wibox.widget(binclock_widget{
@@ -134,7 +156,7 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             s.systray,
             separator(10),
-            s.systrayicon,--wibox.widget.systray(),
+            s.systray_widget,--wibox.widget.systray(),
             separator(10),
             s.volicon,
             separator(10),
