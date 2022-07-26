@@ -37,7 +37,7 @@ theme.border_normal = xrdb.color0
 theme.border_focus  = xrdb.color6
 theme.border_marked = xrdb.color10
 --hover_color-----------------------------------------------------------------------
-theme.hover_color   = xrdb.color2
+theme.hover_color   = xrdb.color2 .. "CC"
 
 --gaps and border width-------------------------------------------------------------
 theme.useless_gap   = dpi(5)
@@ -65,7 +65,7 @@ theme.taglist_shape = rounded_rect_shape
 theme.taglist_bg_occupied = xrdb.color3 .. "66"
 theme.taglist_bg_empty = "#00000000"
 theme.taglist_bg_focus = theme.border_focus .. "AA"
-theme.taglist_hover_color = theme.hover_color .. "CC"
+theme.taglist_hover_color = theme.hover_color
 --disable squares
 theme.taglist_squares_sel = nil
 theme.taglist_squares_unsel = nil
@@ -118,7 +118,7 @@ theme.tasklist_fg_focus = theme.fg_focus
 theme.tasklist_bg_focus = theme.border_focus .. "44"
 theme.tasklist_shape_border_color_focus = theme.border_focus .."AA"
 theme.tasklist_font_focus = font_bold
-theme.tasklist_hover_color = theme.hover_color .. "55"
+theme.tasklist_hover_color = theme.hover_color
 --minimized
 theme.tasklist_shape_border_color_minimized = xrdb.color1 .. "66"
 --shape
