@@ -36,6 +36,8 @@ theme.fg_minimize   = xrdb.background
 theme.border_normal = xrdb.color0
 theme.border_focus  = xrdb.color6
 theme.border_marked = xrdb.color10
+--hover_color-----------------------------------------------------------------------
+theme.hover_color   = xrdb.color2
 
 --gaps and border width-------------------------------------------------------------
 theme.useless_gap   = dpi(5)
@@ -63,6 +65,7 @@ theme.taglist_shape = rounded_rect_shape
 theme.taglist_bg_occupied = xrdb.color3 .. "66"
 theme.taglist_bg_empty = "#00000000"
 theme.taglist_bg_focus = theme.border_focus .. "AA"
+theme.taglist_hover_color = theme.hover_color .. "CC"
 --disable squares
 theme.taglist_squares_sel = nil
 theme.taglist_squares_unsel = nil
@@ -90,11 +93,11 @@ theme.taglist_widget_template = {
     create_callback = function(self, c3, index, objects) --luacheck: no unused args
         self:get_children_by_id('icon_role')[1].markup = '<b> '..index..' </b>'
         self:connect_signal('mouse::enter', function()
-            if self.bg ~= theme.fg_focus then
+            if self.bg ~= theme.taglist_hover_color then
                 self.backup     = self.bg
                 self.has_backup = true
             end
-            self.bg = theme.fg_focus
+            self.bg = theme.taglist_hover_color
         end)
         self:connect_signal('mouse::leave', function()
             if self.has_backup then self.bg = self.backup end
@@ -115,6 +118,7 @@ theme.tasklist_fg_focus = theme.fg_focus
 theme.tasklist_bg_focus = theme.border_focus .. "44"
 theme.tasklist_shape_border_color_focus = theme.border_focus .."AA"
 theme.tasklist_font_focus = font_bold
+theme.tasklist_hover_color = theme.hover_color .. "55"
 --minimized
 theme.tasklist_shape_border_color_minimized = xrdb.color1 .. "66"
 --shape
@@ -153,7 +157,21 @@ theme.tasklist_widget_template = {
     },
     id     = 'background_role',
     widget = wibox.container.background,
-    create_callback = function(self, c)
+    --Add support for hover colors and an index label-----------
+    create_callback = function(self, c, index, objects) --luacheck: no unused args
+        self:get_children_by_id('clienticon')[1].client = c
+        self:connect_signal('mouse::enter', function()
+            if self.bg ~= theme.tasklist_hover_color then
+                self.backup     = self.bg
+                self.has_backup = true
+            end
+            self.bg = theme.tasklist_hover_color
+        end)
+        self:connect_signal('mouse::leave', function()
+            if self.has_backup then self.bg = self.backup end
+        end)
+    end,
+    update_callback = function(self, c)
         self:get_children_by_id('clienticon')[1].client = c
     end,
 }
