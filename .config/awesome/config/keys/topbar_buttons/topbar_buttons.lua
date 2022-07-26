@@ -4,7 +4,7 @@ local mytable = require('gears.table')
 local modkey = require('config.keys.mod_keys').modKey
 
 local topbar_buttons = {
-    --taglist------------------------------------
+    --taglist-----------------------------------------------------------------------
     taglist = mytable.join(
         awful.button({ }, 1, function(t) t:view_only() end),
         awful.button({ modkey }, 1, function(t)
@@ -22,7 +22,7 @@ local topbar_buttons = {
         awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
     ),
 
-    --tasklist------------------------------------
+    --tasklist----------------------------------------------------------------------
     tasklist = mytable.join(
         awful.button({ }, 1, function (c)
                 if c == client.focus then
@@ -49,7 +49,7 @@ local topbar_buttons = {
             end)
     ),
 
-    --layoutbox------------------------------------
+    --layoutbox---------------------------------------------------------------------
     layoutbox = mytable.join(
         awful.button({ }, 1, function () awful.layout.inc( 1) end),
         awful.button({ }, 3, function () awful.layout.inc(-1) end),
@@ -57,7 +57,7 @@ local topbar_buttons = {
         awful.button({ }, 5, function () awful.layout.inc(-1) end)
     ),
 
-    --volume_widget------------------------------------
+    --volume_widget-----------------------------------------------------------------
     volume_widget = function (volicon, volwidget)
         volicon:buttons(mytable.join (
             awful.button({}, 1, function() -- left click
@@ -82,7 +82,7 @@ local topbar_buttons = {
         ))
     end,
 
-    --systray------------------------------------
+    --systray-----------------------------------------------------------------------
     systray = function (tray_widget, tray, icon_on, icon_off)
         tray_widget:buttons(mytable.join(
             awful.button({}, 1, function()
