@@ -95,14 +95,12 @@ local topbar_buttons = {
     end,
 
     --systray-----------------------------------------------------------------------
-    systray = function ()
-        s.systray_button:buttons(mytable.join(
-            awful.button({}, 1, function()
-                s.systray.visible = not s.systray.visible
-                s.systray_image.image = beautiful.icons_topbar[s.systray.visible]
-            end)
-        ))
-    end,
+    systray =  mytable.join(
+        awful.button({}, 1, function()
+            s.systray.visible = not s.systray.visible
+            s.systray_image.image = beautiful.icons_topbar[s.systray.visible]
+        end)
+    )
 }
 
 return topbar_buttons
