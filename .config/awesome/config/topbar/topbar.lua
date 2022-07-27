@@ -17,7 +17,7 @@ awful.screen.connect_for_each_screen(function(s)
         awful.tag.add(i, {
             icon = beautiful.icons_topbar[i],
             icon_only = true,
-            layout = awful.layout.suit.spiral.dwindle,
+            layout = awful.layout.suit.tile,
             screen = s,
             selected = i == 1
         })
