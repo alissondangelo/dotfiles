@@ -2,11 +2,11 @@ local awful = require("awful")
 local my_layouts = require("config.layouts.my_layouts")
 
 awful.layout.layouts = {
-	awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.tile,
 	my_layouts.centerwork,
     awful.layout.suit.fair.horizontal,
-    awful.layout.suit.tile,
     awful.layout.suit.max,
+    awful.layout.suit.spiral.dwindle,
 
     --[[
     awful.layout.suit.floating,
