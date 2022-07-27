@@ -184,6 +184,7 @@ awful.screen.connect_for_each_screen(function(s)
         },
         shape = helpers.rounded_rect_shape(3),
         widget = wibox.container.background,
+        buttons = topbar_buttons.volume_widget
     }
     s.volume = volume_widget({
         settings = function()
@@ -196,7 +197,6 @@ awful.screen.connect_for_each_screen(function(s)
                 s.volicon2.image = beautiful.icons_topbar[(perc%10)]
             end
     end})
-    topbar_buttons.volume_widget(s.volicon, s.volume)
     helpers.mouse_hover(s.volicon, beautiful.hover_color)
 
     --Create the wibox--------------------------------------------------------------
