@@ -53,6 +53,9 @@ case ${TERM} in
     ;;
 esac
 
+#show datetime in history command 
+HISTTIMEFORMAT="%Y-%m-%d %T "
+
 ### SHOPT
 shopt -s autocd # change to named directory
 shopt -s cdspell # autocorrects cd misspellings
