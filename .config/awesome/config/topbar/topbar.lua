@@ -125,7 +125,6 @@ awful.screen.connect_for_each_screen(function(s)
             right = 5,
             widget = wibox.container.margin
         },
-        bg = beautiful.bg_normal,
         shape = helpers.rounded_rect_shape(3),
         widget = wibox.container.background,
         buttons = topbar_buttons.systray
