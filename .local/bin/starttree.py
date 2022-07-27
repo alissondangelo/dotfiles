@@ -1,0 +1,1 @@
+/home/alisson/.local/share/applications/StartTree/generate.py
