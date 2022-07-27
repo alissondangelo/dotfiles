@@ -27,15 +27,15 @@ local globalkeys = mytable.join(
         {description = "System Shutdown", group = "system"}),
 
     -- screenshots -----------------------------------------------------------------
-    awful.key({                   }, "Print", function() awful.spawn("screenshot.sh") end,
+    awful.key({                   }, "Print", function() awful.spawn("screenshot") end,
         {description = "take full screenshot", group = "screenshots"}),
-    awful.key({ modkey,           }, "Print", function() awful.spawn("screenshot.sh -s") end,
+    awful.key({ modkey,           }, "Print", function() awful.spawn("screenshot -s") end,
         {description = "select area to capture", group = "screenshots"}),
-    awful.key({ modkey, "Shift"   }, "Print", function() awful.spawn("screenshot.sh -c") end,
+    awful.key({ modkey, "Shift"   }, "Print", function() awful.spawn("screenshot -c") end,
         {description = "select area to copy to clipboard", group = "screenshots"}),
-    awful.key({ modkey, "Control" }, "Print", function() awful.spawn("screenshot.sh -b") end,
+    awful.key({ modkey, "Control" }, "Print", function() awful.spawn("screenshot -b") end,
         {description = "browse screenshots", group = "screenshots"}),
-    awful.key({ modkey, altkey    }, "Print", function() awful.spawn("screenshot.sh -e") end,
+    awful.key({ modkey, altkey    }, "Print", function() awful.spawn("screenshot -e") end,
         {description = "edit most recent screenshot with gimp", group = "screenshots"}),
 
     -- internet --------------------------------------------------------------------
@@ -135,28 +135,28 @@ local globalkeys = mytable.join(
     -- media -------------------------------------------------------------------------
     awful.key({ modkey,           }, "KP_Add",
         function ()
-            awful.spawn.with_shell("volume-control.sh up")
+            awful.spawn.with_shell("volume-control up")
             s.volume.update()
         end,
         {description = "Volume +", group = "media"}
     ),
     awful.key({ modkey,           }, "KP_Subtract",
         function ()
-            awful.spawn.with_shell("volume-control.sh down")
+            awful.spawn.with_shell("volume-control down")
             s.volume.update()
         end,
         {description = "Volume -", group = "media"}
     ),
     awful.key({ modkey,           }, "KP_Multiply",
         function ()
-            awful.spawn.with_shell("volume-control.sh toggle")
+            awful.spawn.with_shell("volume-control toggle")
             s.volume.update()
         end,
         {description = "Volume toggle", group = "media"}
     ),
     awful.key({ modkey,           }, "KP_Divide",
         function()
-            awful.spawn.with_shell("volume-control.sh mic_toggle")
+            awful.spawn.with_shell("volume-control mic_toggle")
         end,
         {description = "(un)mute microphone", group = "volume"}),
     awful.key({ modkey,           }, "KP_Decimal",
@@ -171,7 +171,7 @@ local globalkeys = mytable.join(
     -- customization ------------------------------------------------------------------
     awful.key({ modkey, "Shift"   }, "w",
         function ()
-            awful.spawn.with_shell("change_wallpaper_theme.sh")
+            awful.spawn.with_shell("change_wallpaper_theme")
         end,
         {description = "Change wallpaper and color scheme", group = "customization"}
     ),
