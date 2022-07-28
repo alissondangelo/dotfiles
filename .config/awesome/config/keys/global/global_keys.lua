@@ -50,13 +50,15 @@ local globalkeys = mytable.join(
 
     -- games -----------------------------------------------------------------------
     awful.key({ modkey,           }, "g", function () awful.spawn("lutris") end,
-        {description = "Lutris", group = "Games"}),
+        {description = "Lutris", group = "games"}),
     awful.key({ modkey,           }, "s", function () awful.spawn("steam") end,
-        {description = "Steam", group = "Games"}),
+        {description = "Steam", group = "games"}),
     awful.key({ modkey,           }, "d", function () awful.spawn("discord") end,
-        {description = "Discord", group = "Games"}),
+        {description = "Discord", group = "games"}),
     awful.key({ modkey,           }, "t", function () awful.spawn("/usr/bin/java -jar /opt/tlauncher/tlauncher.jar") end,
         {description = "Minecraft (Tlauncher)", group = "games"}),
+    awful.key({ modkey,           }, "p", function () awful.spawn("performance_mode") end,
+        {description = "Performance Mode", group = "games"}),
 
     -- awesome ---------------------------------------------------------------------
     awful.key({ modkey,           }, "w", function () awful.util.mymainmenu:show() end,
