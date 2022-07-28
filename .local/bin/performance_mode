@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# Toggle picom
+
+if pgrep picom; then
+    pkill picom &
+    notify-send "1" -r 1 --urgency low
+else
+    picom -b --experimental-backends --backend glx --config  $HOME/.config/picom/picom.conf &
+    notify-send "0" -r 1 --urgency low
+fi
