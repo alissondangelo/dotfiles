@@ -1,97 +1,91 @@
---[[
-
-     Licensed under GNU General Public License v2
-      * (c) 2017, Luca CPZ
-      * (c) 2013, romockee
-
---]]
-
 local gears  = require("gears")
 local wibox  = require("wibox")
 local dpi    = require("beautiful.xresources").apply_dpi
 local date   = os.date
-local ipairs = ipairs
-local math   = math
-local select = select
 local string = string
-
+local beautiful = require("beautiful")
+local helpers = require("config.helpers")
 
 local binclock = {}
-
-function binclock.dec2bin(num, bits)
-    local bits, t = bits or select(2, math.frexp(num)), {}
-    for b = bits, 1, -1 do
-        t[b] = math.fmod(num, 2)
-        num = (num - t[b]) / 2
-    end
-    return t
-end
-
-function binclock.paintdot(cr, val, shift)
-    local height = 0
-    for _, bit in ipairs(binclock.dec2bin(val, 4)) do
-        if bit >= 1 then
-            cr:set_source(gears.color(binclock.color_active))
-        else
-            cr:set_source(gears.color(binclock.color_inactive))
-        end
-        cr:rectangle(shift, height, binclock.dotsize, binclock.dotsize)
-        cr:fill()
-        height = height + binclock.dotsize + binclock.step
-    end
-end
 
 local function factory(args)
     local args = args or {}
 
-    binclock.width          = args.width or dpi(42)
-    binclock.height         = args.height or dpi(18)
-    binclock.show_seconds   = args.show_seconds or false
-    binclock.color_active   = args.color_active or "#CCCCCC"
-    binclock.color_inactive = args.color_inactive or "#666666"
-    binclock.dotsize        = math.floor(binclock.height / 5)
-    binclock.step           = math.floor(binclock.dotsize / 3)
+    binclock.show_seconds    = args.show_seconds or false
+    binclock.gap             = args.gap or 1.5
 
-    binclock.widget = wibox.widget {
-        fit = function(self, context, width, height)
-            return binclock.width, binclock.height
-        end,
-        draw = function(self, context, cr, width, height)
-            local t = date("*t")
+    local clock = {}
+    for i = 0, 6, 1 do
+        clock[i] = wibox.widget.imagebox(beautiful.icons_topbar[0])
+    end
 
-            local hour = string.format("%02d", t.hour)
-            local min  = string.format("%02d", t.min)
-            local sec  = string.format("%02d", t.sec)
+    binclock.set = function()
+        local t = date("*t")
+        local hour = string.format("%02d", t.hour)
+        local min  = string.format("%02d", t.min)
+        local sec  = string.format("%02d", t.sec)
+        clock[0].image = beautiful.icons_topbar[tonumber(string.sub(hour, 1, 1))]
+        clock[1].image = beautiful.icons_topbar[tonumber(string.sub(hour, 2, 2))]
+        clock[2].image = beautiful.icons_topbar[tonumber(string.sub(min, 1, 1))]
+        clock[3].image = beautiful.icons_topbar[tonumber(string.sub(min, 2, 2))]
+        if binclock.show_seconds then
+            clock[4].image = beautiful.icons_topbar[tonumber(string.sub(sec, 1, 1))]
+            clock[5].image = beautiful.icons_topbar[tonumber(string.sub(sec, 2, 2))]
+        else
+            clock[4] = nil
+            clock[5] = nil
+        end
 
-            local col_count = 4
-            if binclock.show_seconds then
-                col_count = 6
-            end
-            local step = math.floor((binclock.width - col_count * binclock.dotsize) / 8)
+    end
+    binclock.set()
 
-            binclock.paintdot(cr, string.sub(hour, 1, 1), step, 2)
-            binclock.paintdot(cr, string.sub(hour, 2, 2), binclock.dotsize + 2 * step)
-
-            binclock.paintdot(cr, string.sub(min, 1, 1), binclock.dotsize * 2 + 4 * step)
-            binclock.paintdot(cr, string.sub(min, 2, 2), binclock.dotsize * 3 + 5 * step)
-
-            if binclock.show_seconds then
-                binclock.paintdot(cr, string.sub(sec, 1, 1), binclock.dotsize * 4 + 7 * step)
-                binclock.paintdot(cr, string.sub(sec, 2, 2), binclock.dotsize * 5 + 8 * step)
-            end
-        end,
-        layout = wibox.widget.base.make_widget
+    binclock.widget = wibox.widget{
+        {
+            {
+                {
+                    clock[0],
+                    clock[1],
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                left  = dpi(binclock.gap),
+                right = dpi(binclock.gap),
+                widget  = wibox.container.margin,
+            },
+            {
+                {
+                    clock[2],
+                    clock[3],
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                left  = dpi(binclock.gap),
+                right = dpi(binclock.gap),
+                widget  = wibox.container.margin,
+            },
+            {
+                {
+                    clock[4],
+                    clock[5],
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                left  = dpi(binclock.gap),
+                right = dpi(binclock.gap),
+                widget  = wibox.container.margin,
+            },
+            layout = wibox.layout.fixed.horizontal,
+        },
+        shape = helpers.rounded_rect_shape(),
+        widget = wibox.container.background,
     }
 
     binclock.timer = gears.timer {
         autostart  = true,
         timeout    = binclock.show_seconds and 1 or 60,
         callback   = function()
-            binclock.widget:emit_signal("widget::redraw_needed")
+           binclock.set()
         end
     }
 
-    return binclock
+    return binclock.widget
 end
 
 return factory
