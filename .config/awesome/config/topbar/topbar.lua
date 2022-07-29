@@ -48,8 +48,8 @@ awful.screen.connect_for_each_screen(function(s)
                     },
                     layout = wibox.layout.fixed.horizontal,
                 },
-                left  = 5,
-                right = 5,
+                left  = dpi(5),
+                right = dpi(5),
                 widget = wibox.container.margin
             },
             id     = 'background_role',
@@ -121,8 +121,8 @@ awful.screen.connect_for_each_screen(function(s)
     s.systray_button = wibox.widget {
         {
             s.systray_image,
-            left  = 5,
-            right = 5,
+            left  = dpi(4),
+            right = dpi(4),
             widget = wibox.container.margin
         },
         shape = helpers.rounded_rect_shape(),
@@ -136,6 +136,7 @@ awful.screen.connect_for_each_screen(function(s)
 	--Binary clock--------------------------------------------------------------------
     s.binclock = binclock_widget{
         show_seconds = true,
+        gap = 1.4,
     }
     helpers.mouse_hover(s.binclock, beautiful.hover_color)
 
@@ -170,7 +171,7 @@ awful.screen.connect_for_each_screen(function(s)
                 s.volicon2,
                 layout = wibox.layout.fixed.horizontal,
             },
-            left  = dpi(4),
+            left  = dpi(3),
             right = dpi(4),
             widget  = wibox.container.margin,
 
