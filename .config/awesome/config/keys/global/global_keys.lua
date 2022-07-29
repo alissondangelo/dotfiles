@@ -136,7 +136,7 @@ local globalkeys = mytable.join(
         function ()
             s.mylayoutbox.visible = not s.mylayoutbox.visible
             s.mytasklist.visible = not s.mytasklist.visible
-            s.systrayicon.visible = not s.systrayicon.visible
+            s.systray_button.visible = not s.systray_button.visible
             s.volicon1.visible = not s.volicon1.visible
             s.volicon2.visible = not s.volicon2.visible
         end,
