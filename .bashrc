@@ -1,36 +1,29 @@
+### RANDOM COLOR SCRIPT ###
+# Or install it from the Arch User Repository: shell-color-scripts
+#colorscript random
 
-### EXPORT
-export TERM="xterm-256color"                      # getting proper colors
-export HISTCONTROL=ignoredups:erasedups           # no duplicate entries
-#export ALTERNATE_EDITOR=""                        # setting for emacsclient
-#export EDITOR="emacsclient -t -a ''"              # $EDITOR use Emacs in terminal
-#export VISUAL="emacsclient -c -a emacs"           # $VISUAL use Emacs in GUI mode
-
-### SET MANPAGER
-### Uncomment only one of these!
-
-### "bat" as manpager
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-
-### "vim" as manpager
-# export MANPAGER='/bin/bash -c "vim -MRn -c \"set buftype=nofile showtabline=0 ft=man ts=8 nomod nolist norelativenumber nonu noma\" -c \"normal L\" -c \"nmap q :qa<CR>\"</dev/tty <(col -b)"'
-
-### "nvim" as manpager
-# export MANPAGER="nvim -c 'set ft=man' -"
-
-### SET VI MODE ###
-# Comment this line out to enable default emacs-like bindings
-set -o vi
-bind -m vi-command 'Control-l: clear-screen'
-bind -m vi-insert 'Control-l: clear-screen'
+#show country flags
+countryfetch random
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 ### PROMPT
 # This is commented out if using starship prompt
-PS1='[\u@\h \W]\$ '
+# PS1='[\u@\h \W]\$ '
 
+### "bat" as manpager
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+### SET VI MODE ###
+set -o vi
+bind -m vi-command 'Control-l: clear-screen'
+bind -m vi-insert 'Control-l: clear-screen'
+
+### EXPORT
+export HISTTIMEFORMAT="%Y-%m-%d %T " #show datetime in history command 
+
+### PATH
 if [ -d "$HOME/.bin" ] ;
   then PATH="$HOME/.bin:$PATH"
 fi
@@ -42,19 +35,6 @@ fi
 if [ -d "$HOME/Applications" ] ;
   then PATH="$HOME/Applications:$PATH"
 fi
-
-### CHANGE TITLE OF TERMINALS
-case ${TERM} in
-  xterm*|rxvt*|Eterm*|aterm|kterm|gnome*|alacritty|st|konsole*)
-    PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\007"'
-        ;;
-  screen*)
-    PROMPT_COMMAND='echo -ne "\033_${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/\~}\033\\"'
-    ;;
-esac
-
-#show datetime in history command 
-HISTTIMEFORMAT="%Y-%m-%d %T "
 
 ### SHOPT
 shopt -s autocd # change to named directory
@@ -177,12 +157,6 @@ alias free='free -m'                      # show sizes in MB
 alias ncmpcpp='ncmpcpp ncmpcpp_directory=$HOME/.config/ncmpcpp/'
 #alias mocp='mocp -M "$XDG_CONFIG_HOME"/moc -O MOCDir="$XDG_CONFIG_HOME"/moc'
 
-# ps
-#alias psa="ps auxf"
-#alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
-#alias psmem='ps auxf | sort -nr -k 4'
-#alias pscpu='ps auxf | sort -nr -k 3'
-
 # Merge Xresources
 alias merge='xrdb -merge ~/.Xresources'
 
@@ -201,7 +175,7 @@ alias tag='git tag'
 alias newtag='git tag -a'
 
 #dotfiles git alias
-alias dotfiles=/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
@@ -211,19 +185,6 @@ alias jctl="journalctl -p 3 -xb"
 alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
 # receive the key of a developer
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
-
-# bare git repo alias for dotfiles
-alias config="/usr/bin/git --git-dir=$HOME/dotfiles --work-tree=$HOME"
-
-
-### Skel ###
-# Copy/paste all content of /etc/skel over to home folder.
-# A backup of config is created. BEWARE!
-alias skel='[ -d ~/.config ] || mkdir ~/.config && cp -Rf ~/.config ~/.config-backup-$(date +%Y.%m.%d-%H.%M.%S) && cp -rf /etc/skel/* ~'
-
-### Backup Skel ###
-# backup contents of /etc/skel to hidden backup folder in $HOME.
-alias bupskel='cp -Rf /etc/skel ~/.skel-backup-$(date +%Y.%m.%d-%H.%M.%S)'
 
 ### Backup .config ###
 # backup contents of .config to hidden backup folder in $home/user/.backups
@@ -240,14 +201,6 @@ alias backsm='cd ~/.wine/drive_c/users/alisson/AppData/Roaming/Axolot\ Games && 
 
 ### Backup 7days to die coop Save ###
 alias back7d='cd ~/.local/share/7DaysToDie/Saves/Navezgane && zip -Tr ~/Media/Backups/Games/Saves/7\ Days\ To\ Die/Coop\ Server/7days_Coop_Server_Save_backup_$(date +%Y.%m.%d-%H.%M.%S).zip coop_server'
-
-
-
-### RANDOM COLOR SCRIPT ###
-# Get this script from my GitLab: gitlab.com/dwt1/shell-color-scripts
-# Or install it from the Arch User Repository: shell-color-scripts
-#colorscript random
-countryfetch random
 
 ### BASH INSULTER ###
 if [ -f /etc/bash.command-not-found ]; then
@@ -267,4 +220,4 @@ eval "$(starship init bash)"
 cat ~/.cache/wal/sequences
 
 # To add support for TTYs this line can be optionally added.
-#source ~/.cache/wal/colors-tty.sh
+source ~/.cache/wal/colors-tty.sh
