@@ -1,0 +1,10 @@
+# ~/.config/starship.toml
+
+# Use custom format
+format = """
+$directory$rust$package$status
+$character"""
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
