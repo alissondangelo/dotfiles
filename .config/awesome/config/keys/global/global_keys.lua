@@ -99,16 +99,16 @@ local globalkeys = mytable.join(
         {description = "open a floating terminal", group = "launcher"}),
     awful.key({ modkey, "Shift"   }, "r", function () awful.screen.focused().mypromptbox:run() end,
         {description = "run prompt", group = "launcher"}),
-    awful.key({ modkey,           }, "#94",
+    awful.key({ modkey,           }, "backslash",
         function ()
             awful.spawn.with_shell("rofi -show drun")
         end,
-        {description = "open rofi menu", group = "client"}),
+        {description = "open rofi menu", group = "launcher"}),
     awful.key({ modkey,           }, "r",
     	function ()
 	        awful.spawn.with_shell("rofi -show drun")
         end,
-        {description = "pen rofi menu", group = "client"}),
+        {description = "open rofi menu", group = "launcher"}),
     awful.key({ modkey,           }, "e", function () awful.spawn(fileManager) end,
         {description = "File Manager", group = "utilities"}),
 
@@ -168,7 +168,7 @@ local globalkeys = mytable.join(
         function()
             awful.spawn.with_shell("volume-control mic_toggle")
         end,
-        {description = "(un)mute microphone", group = "volume"}),
+        {description = "(un)mute microphone", group = "media"}),
     awful.key({ modkey,           }, "KP_Decimal",
         function ()
             awful.spawn.with_shell("pavucontrol")
