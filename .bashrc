@@ -202,6 +202,10 @@ alias backsm='cd ~/.wine/drive_c/users/alisson/AppData/Roaming/Axolot\ Games && 
 ### Backup 7days to die coop Save ###
 alias back7d='cd ~/.local/share/7DaysToDie/Saves/Navezgane && zip -Tr ~/Media/Backups/Games/Saves/7\ Days\ To\ Die/Coop\ Server/7days_Coop_Server_Save_backup_$(date +%Y.%m.%d-%H.%M.%S).zip coop_server'
 
+### Backup unity jigsaw3D project ###
+alias backjigsaw3d='cd ~/Documents/Unity/Projects && zip -Tr ~/Media/Backups/Develpment/Unity\ Projects/Jigsaw3D/Jigsaw3D_backup_$(date +%Y.%m.%d-%H.%M.%S).zip Jigsaw\ 3D'
+
+
 ### BASH INSULTER ###
 if [ -f /etc/bash.command-not-found ]; then
     . /etc/bash.command-not-found
