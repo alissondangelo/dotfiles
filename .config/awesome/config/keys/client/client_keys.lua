@@ -41,8 +41,11 @@ local clientkeys = mytable.join(
         { description = "resize client left", group = "client" }),
     awful.key({ modkey, "Control" }, "Right", function(c) helpers.resize_dwim(client.focus, "right") end,
         { description = "resize client right", group = "client" }),
+
+    --opacity
     awful.key({ modkey, }, "o", function(c) c.opacity = 1 end,
-        { description = "toggle client opacity", group = "client" }),
+        { description = "disable client transparency", group = "client" }),
+
     awful.key({ modkey, }, "f",
         function(c)
             c.fullscreen = not c.fullscreen
@@ -59,6 +62,7 @@ local clientkeys = mytable.join(
         { description = "move to screen", group = "client" }),
     awful.key({ modkey, }, "ç", function(c) c.ontop = not c.ontop end,
         { description = "toggle keep on top", group = "client" }),
+
 
     -- maximize e minimize
     awful.key({ modkey, }, "n",

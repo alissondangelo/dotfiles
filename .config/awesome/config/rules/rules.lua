@@ -29,8 +29,8 @@ awful.rules.rules = {
         rule_any = {
             instance = {
                 "floating", -- Launc alacritty with --class floating
-                "DTA", -- Firefox addon DownThemAll.
-                "copyq", -- Includes session name in class.
+                "DTA",      -- Firefox addon DownThemAll.
+                "copyq",    -- Includes session name in class.
                 "pinentry"
             },
             class = {
@@ -48,13 +48,13 @@ awful.rules.rules = {
             },
             role = {
                 "GtkFileChooserDialog",
-                "AlarmWindow", -- Thunderbird's calendar.
+                "AlarmWindow",   -- Thunderbird's calendar.
                 "ConfigManager", -- Thunderbird's about:config.
-                "pop-up" -- e.g. Google Chrome's (detached) Developer Tools.
+                "pop-up"         -- e.g. Google Chrome's (detached) Developer Tools.
             },
-            type = {"dialog"}
+            type = { "dialog" }
         },
-        properties = {floating = true}
+        properties = { floating = true }
     },
 
     --Fullscreen clients-----------------------------------------
@@ -64,7 +64,7 @@ awful.rules.rules = {
                 "feh",
             },
         },
-        properties = {fullscreen = true}
+        properties = { fullscreen = true }
     },
 
     --Maximized clients------------------------------------------
@@ -78,18 +78,17 @@ awful.rules.rules = {
                 role = "gimp-image-window"
             },
         },
-        properties = {maximized = true}
+        properties = { maximized = true }
     },
-    
+
     --Specific Tag clients---------------------------------------
     {
         rule_any = {
             class = {
                 "Gwe",
-                "Pavucontrol"}
-            },
-        properties = {screen = 1, tag = "9"}
-    }, {rule = {class = "discord"}, properties = {screen = 1, tag = "8"}}
+                "Pavucontrol" }
+        },
+        properties = { screen = 1, tag = "9" }
+    }, { rule = { class = "discord" }, properties = { screen = 1, tag = "8" } }
 
 }
-
