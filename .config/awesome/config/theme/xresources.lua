@@ -92,8 +92,8 @@ theme.tasklist_spacing = tasklist_border_width
 theme.tasklist_widget = wibox.widget
 
 --menu------------------------------------------------------------------------------
-theme.menu_height = dpi(24)
-theme.menu_width  = dpi(150)
+theme.menu_height = dpi(25)
+theme.menu_width  = dpi(130)
 theme.menu_border_color = theme.border_focus
 theme.menu_fg_focus = theme.fg_focus
 theme.menu_fg_normal = theme.bg_focus
