@@ -1,4 +1,5 @@
 require("awful.autofocus")
+
 local beautiful = require("beautiful")
 
 --remove tmux keybinds from hotkeys menu
@@ -8,6 +9,7 @@ package.loaded["awful.hotkeys_popup.keys.tmux"] = {}
 beautiful.init(require("config.theme"))
 
 -- Init all modules
+require("config.modules.eminent")  --for dinamic tags
 require("config.modules.notifications")
 require("config.signals")
 
