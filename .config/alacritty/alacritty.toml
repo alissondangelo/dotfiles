@@ -1,0 +1,42 @@
+import = ["/home/alisson/.cache/wal/alacrittycolors.toml"]
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[font]
+size = 12.0
+
+[font.bold]
+family = "Roboto Mono Medium"
+style = "Bold"
+
+[font.bold_italic]
+family = "Roboto Mono Medium"
+style = "Bold Italic"
+
+[font.italic]
+family = "Roboto Mono Medium"
+style = "Italic"
+
+[font.normal]
+family = "Roboto Mono"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 1
+
+[scrolling]
+history = 5000
+
+[window]
+dynamic_padding = true
+title = "Alacritty"
+
+[window.class]
+general = "Alacritty"
+instance = "Alacritty"
+
+[window.padding]
+x = 6
+y = 6
