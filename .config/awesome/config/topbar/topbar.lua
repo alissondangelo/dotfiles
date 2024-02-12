@@ -82,6 +82,10 @@ awful.screen.connect_for_each_screen(function(s)
         screen  = s,
         filter  = awful.widget.tasklist.filter.currenttags,
         buttons = topbar_buttons.tasklist,
+        layout   = {
+            spacing = dpi(1),
+            layout  = wibox.layout.fixed.horizontal
+        },
         widget_template = {
             {
                 {
@@ -96,7 +100,7 @@ awful.screen.connect_for_each_screen(function(s)
                     {
                         id     = 'text_role',
                         widget = wibox.widget.textbox,
-                    },
+                    },                   
                     layout = wibox.layout.fixed.horizontal,
                 },
                 left  = dpi(2),
@@ -104,6 +108,7 @@ awful.screen.connect_for_each_screen(function(s)
                 widget = wibox.container.margin
             },
             id     = 'background_role',
+            forced_width  = dpi(150),
             widget = wibox.container.background,
             --Add support for hover colors and an index label-----------
             create_callback = function(self, c, index, objects) --luacheck: no unused args
@@ -113,7 +118,7 @@ awful.screen.connect_for_each_screen(function(s)
             update_callback = function(self, c)
                 self:get_children_by_id('clienticon')[1].client = c
             end,
-        }
+        },
     }
 
     --SysTray-------------------------------------------------------------------------
