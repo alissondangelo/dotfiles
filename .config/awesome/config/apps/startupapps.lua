@@ -3,7 +3,7 @@
 local awful = require('awful')
 
 local apps = {
-    "gwe", -- "gwe --hide-window",
+    "gwe --hide-window",
     "feh --bg-scale $(< ${HOME}/.cache/wal/wal)",
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",
     "picom -b --backend glx --config  $HOME/.config/picom/picom.conf",
