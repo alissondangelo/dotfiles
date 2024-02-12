@@ -1,11 +1,11 @@
 local awful = require("awful")
 
 awful.util.mymainmenu = awful.menu({ items = {
-    { "🫡 Log out", function() awesome.quit() end },
-    { "🤐 Lock", function() awful.spawn.with_shell("xset dpms force off && slock")end},
-    { "😴 Sleep", "systemctl suspend" },
-    { "🙃 Restart", "reboot" },
-    { "😔 Power Off", "shutdown now" }, 
+    { "Logout", function() awesome.quit() end },
+    { "Lock", function() awful.spawn.with_shell("xset dpms force off && slock")end},
+    { "Sleep", "systemctl suspend" },
+    { "Reboot", "reboot" },
+    { "Shutdown", "shutdown now" }, 
     -- other triads can be put here
 }})
  -- Hide on mouse leave
