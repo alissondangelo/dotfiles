@@ -12,6 +12,12 @@ countryfetch random
 # This is commented out if using starship prompt
 # PS1='[\u@\h \W]\$ '
 
+# exports of xdg dirs
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CONFIG_HOME="$HOME/.config" 
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
+
 ### "bat" as manpager
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
