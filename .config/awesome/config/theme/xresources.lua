@@ -28,8 +28,8 @@ theme.bg_urgent     = "#AA0000"
 theme.bg_minimize   = xrdb.color1 .. "44"
 theme.bg_systray    = theme.bg_focus
 --fg_colors-------------------------------------------------------------------------
-theme.fg_normal     = xrdb.color8
-theme.fg_focus      = xrdb.color7
+theme.fg_normal     = xrdb.color7
+theme.fg_focus      = xrdb.color15
 theme.fg_urgent     = xrdb.background
 theme.fg_minimize   = xrdb.background
 --border_colors---------------------------------------------------------------------
@@ -44,7 +44,7 @@ theme.useless_gap   = dpi(5)
 theme.border_width  = dpi(2)
 theme.border_radius = dpi(3)
 theme.tooltip_border_width = dpi(2)
-local tasklist_border_width = 1
+local tasklist_border_width = dpi(1)
 
 --tooltip colors--------------------------------------------------------------------
 theme.tooltip_fg = theme.fg_normal
