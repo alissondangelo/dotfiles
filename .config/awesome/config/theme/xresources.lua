@@ -69,7 +69,7 @@ theme.backup = ""
 --normal color
 theme.tasklist_fg_normal = theme.bg_focus
 theme.tasklist_bg_normal = theme.bg_focus .. "22"
-theme.tasklist_shape_border_color = theme.bg_focus .. "44"
+theme.tasklist_shape_border_color = theme.tasklist_bg_normal --theme.bg_focus .. "44"
 --focus color
 theme.tasklist_fg_focus = theme.fg_focus
 theme.tasklist_bg_focus = theme.border_focus .. "44"
@@ -77,7 +77,7 @@ theme.tasklist_shape_border_color_focus = theme.border_focus .."AA"
 theme.tasklist_font_focus = font_bold
 theme.tasklist_hover_color = theme.hover_color
 --minimized
-theme.tasklist_shape_border_color_minimized = xrdb.color1 .. "66"
+theme.tasklist_shape_border_color_minimized = theme.background_minimized --xrdb.color1 .. "66"
 --shape
 theme.tasklist_shape = helpers.rounded_rect_shape(3)
 theme.tasklist_shape_focus = helpers.rounded_rect_shape(3)
