@@ -14,7 +14,7 @@ icons[6]  = my_icons .. "6.png"
 icons[7]  = my_icons .. "7.png"
 icons[8]  = my_icons .. "8.png"
 icons[9]  = my_icons .. "9.png"
-icons[10] = my_icons .. "1.png"
+icons[10] = my_icons .. "10.png"
 
 --hide systray icons-------------------------------------------
 icons[true]  = my_icons .. "1.png"
