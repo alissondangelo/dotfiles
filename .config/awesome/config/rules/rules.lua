@@ -82,13 +82,13 @@ awful.rules.rules = {
     },
 
     --Specific Tag clients---------------------------------------
-    {
+    --[[{
         rule_any = {
             class = {
                 "Gwe",
                 "Pavucontrol" }
         },
         properties = { screen = 1, tag = "9" }
-    }, { rule = { class = "discord" }, properties = { screen = 1, tag = "8" } }
-
+    },]]-- 
+    --{ rule = { class = "discord" }, properties = { screen = 1, tag = "8" } }
 }
