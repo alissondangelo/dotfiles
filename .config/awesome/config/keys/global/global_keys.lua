@@ -113,7 +113,7 @@ local globalkeys = mytable.join(
         { description = "File Manager", group = "utilities" }),
 
     -- topbar -----------------------------------------------------------------------
-    awful.key({ modkey, }, "-",
+    awful.key({ modkey, }, "=",
         function()
             naughty.destroy(calendar_aux)
             s.cw.show()
@@ -121,7 +121,7 @@ local globalkeys = mytable.join(
             s.cw.notification = nil
         end,
         { description = "toggle calendar", group = "awesome" }),
-    awful.key({ modkey, }, "=",
+    awful.key({ modkey, }, "-",
         function()
             s.systray.visible = not s.systray.visible
             s.systray_image.image = beautiful.icons_topbar[s.systray.visible]
