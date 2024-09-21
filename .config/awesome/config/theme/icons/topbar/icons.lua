@@ -1,4 +1,4 @@
-local my_icons = os.getenv("HOME") .. "/.config/awesome/config/theme/icons/topbar/binary/"
+local my_icons = os.getenv("HOME") .. "/.config/awesome/config/theme/icons/topbar/digital/"
 
 local icons = {}
 
