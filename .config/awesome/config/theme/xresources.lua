@@ -13,7 +13,7 @@ local theme = dofile(themes_path.."default/theme.lua")
 -- load vector assets' generators for this theme
 
 local icons_layout = os.getenv("HOME") .. "/.config/awesome/config/theme/icons/layout/"
-local icons_topbar = require("config.theme.icons.topbar.icons_binary")
+local icons_topbar = require("config.theme.icons.topbar.icons")
 
 --font------------------------------------------------------------------------------
 local font = "Roboto Mono"
