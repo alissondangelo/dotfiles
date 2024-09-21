@@ -55,7 +55,7 @@ local globalkeys = mytable.join(
         { description = "Steam", group = "games" }),
     awful.key({ modkey, }, "d", function() awful.spawn("discord") end,
         { description = "Discord", group = "games" }),
-    awful.key({ modkey, }, "t", function() awful.spawn("/usr/bin/java -jar /opt/tlauncher/tlauncher.jar") end,
+    awful.key({ modkey, }, "t", function() awful.spawn("/usr/bin/java -jar /home/alisson/Games/SSD/Linux/TLauncher.jar") end,
         { description = "Minecraft (Tlauncher)", group = "games" }),
     awful.key({ modkey, }, "p", function() awful.spawn("performance_mode") end,
         { description = "Performance Mode", group = "games" }),
