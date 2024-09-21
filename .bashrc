@@ -141,6 +141,7 @@ alias cleanup='sudo pacman -Rns $(pacman -Qtdq)' # remove orphaned packages
 alias paclist="expac --timefmt='%Y-%m-%d %T' '%l\t%n'|sort -n" # lista pacotes pela data de instalação
 alias paccac='sudo pacman -Sc'                   # clean pacman cache
 alias yaycac='yay -Sc'                           # clean yay cache
+alias frdown='sudo pacman -Rns file-roller && sudo pacman -U https://archive.archlinux.org/packages/f/file-roller/file-roller-3.40.0-1-x86_64.pkg.tar.zst' # downgrade file roller
 
 # get fastest mirrors
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
@@ -199,21 +200,6 @@ alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 # backup contents of .config to hidden backup folder in $home/user/.backups
 # alias baconfig='cp -Rf ~/.config ~/Media/Backups/Softwares/Operation\ Systems/Backup\ Configs/.config-backup-$(date +%Y.%m.%d-%H.%M.%S)'
 alias baconfig='zip -Tr ~/Media/Backups/Softwares/Operation\ Systems/Backup\ Configs/.config-backup-$(date +%Y.%m.%d-%H.%M.%S).zip .config/'
-
-### Backup Ark Save ###
-#alias backark='cd ~/.steam/steam/steamapps/common/ARK/ShooterGame && zip -Tr ~/Media/Backups/Games/Saves/Ark/Saved-backup-$(date +%Y.%m.%d-%H.%M.%S).zip Saved/'
-alias backark='cd ~/Media/SSD/SteamLibrary/steamapps/common/ARK/ShooterGame && zip -Tr ~/Media/Backups/Games/Saves/Ark/Ark_Save_backup_$(date +%Y.%m.%d-%H.%M.%S).zip Saved/'
-
-### Backup Scrap Mechanic Save ###
-#alias backark='cd ~/.steam/steam/steamapps/common/ARK/ShooterGame && zip -Tr ~/Media/Backups/Games/Saves/Ark/Saved-backup-$(date +%Y.%m.%d-%H.%M.%S).zip Saved/'
-alias backsm='cd ~/.wine/drive_c/users/alisson/AppData/Roaming/Axolot\ Games && zip -Tr ~/Media/Backups/Games/Saves/Scrap\ Mechanic/ScrapMechanic_Save_backup_$(date +%Y.%m.%d-%H.%M.%S).zip Scrap\ Mechanic/'
-
-### Backup 7days to die coop Save ###
-alias back7d='cd ~/.local/share/7DaysToDie/Saves/Navezgane && zip -Tr ~/Media/Backups/Games/Saves/7\ Days\ To\ Die/Coop\ Server/7days_Coop_Server_Save_backup_$(date +%Y.%m.%d-%H.%M.%S).zip coop_server'
-
-### Backup unity jigsaw3D project ###
-alias backjigsaw3d='cd ~/Documents/Unity/Projects && zip -Tr ~/Media/Backups/Develpment/Unity\ Projects/Jigsaw3D/Jigsaw3D_backup_$(date +%Y.%m.%d-%H.%M.%S).zip Jigsaw\ 3D'
-
 
 ### BASH INSULTER ###
 if [ -f /etc/bash.command-not-found ]; then
