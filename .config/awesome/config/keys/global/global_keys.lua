@@ -109,6 +109,11 @@ local globalkeys = mytable.join(
             awful.spawn.with_shell("rofi -show drun")
         end,
         { description = "open rofi menu", group = "launcher" }),
+    awful.key({ }, "Super_R",
+        function()
+            awful.spawn.with_shell("rofi -show drun")
+        end,
+        { description = "open rofi menu", group = "launcher" }),
     awful.key({ modkey, }, "e", function() awful.spawn(fileManager) end,
         { description = "File Manager", group = "utilities" }),
 
