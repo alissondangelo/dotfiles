@@ -41,6 +41,8 @@ local globalkeys = mytable.join(
     -- internet --------------------------------------------------------------------
     awful.key({ modkey, }, "b", function() awful.spawn(browser1) end,
         { description = "Browser 1 (Main)", group = "internet" }),
+    awful.key({ modkey, "Shift" }, "b", function() awful.spawn("brave --tor") end,
+        { description = "Browser 1 (Main)", group = "internet" }),
     awful.key({ modkey, }, "v", function() awful.spawn(browser2) end,
         { description = "Browser 2", group = "internet" }),
     awful.key({ modkey, }, "c", function() awful.spawn(browser3) end,
