@@ -186,6 +186,9 @@ alias newtag='git tag -a'
 
 #dotfiles git alias
 alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
+# dotfiles add ~/.bashrc
+# dotfiles commit -m 'Initial commit with .bashrc'
+# dotfiles push -u origin main
 
 # get error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
