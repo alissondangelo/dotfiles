@@ -3,8 +3,8 @@
 
 if pgrep picom; then
     pkill picom &
-    notify-send "1" -r 1 --urgency low
+    notify-send "🎮" -r 1 --urgency low
 else
     picom -b --backend glx --config  $HOME/.config/picom/picom.conf &
-    notify-send "0" -r 1 --urgency low
+    notify-send "🕶" -r 1 --urgency low
 fi
