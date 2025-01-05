@@ -1,35 +1,27 @@
-[colors.bright]
-black = "#998c72"
-blue = "#9D7445"
-cyan = "#AE914F"
-green = "#916031"
-magenta = "#7C843F"
-red = "#695C4B"
-white = "#dbc8a3"
-yellow = "#936A38"
+[colors.primary]
+background = '{background}'
+foreground = '{foreground}'
 
-[colors.dim]
-black = "#0E0807"
-blue = "#9D7445"
-cyan = "#AE914F"
-green = "#916031"
-magenta = "#7C843F"
-red = "#695C4B"
-white = "#dbc8a3"
-yellow = "#936A38"
+[colors.cursor]
+text = '{foreground}'
+cursor = '{cursor}'
 
 [colors.normal]
-black = "#0E0807"
-blue = "#9D7445"
-cyan = "#AE914F"
-green = "#916031"
-magenta = "#7C843F"
-red = "#695C4B"
-white = "#dbc8a3"
-yellow = "#936A38"
+black   = '{color0}'
+red     = '{color1}'
+green   = '{color2}'
+yellow  = '{color3}'
+blue    = '{color4}'
+magenta = '{color5}'
+cyan    = '{color6}'
+white   = '{color7}'
 
-[colors.primary]
-background = "#0E0807"
-bright_foreground = "#9D7445"
-dim_foreground = "#998c72"
-foreground = "#dbc8a3"
+[colors.bright]
+black   = '{color8}'
+red     = '{color9}'
+green   = '{color10}'
+yellow  = '{color11}'
+blue    = '{color12}'
+magenta = '{color13}'
+cyan    = '{color14}'
+white   = '{color15}'
