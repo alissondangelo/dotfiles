@@ -173,7 +173,7 @@ local globalkeys = mytable.join(
         { description = "(un)mute microphone", group = "media" }),
     awful.key({ modkey, }, "KP_Decimal",
         function()
-            awful.spawn.with_shell("pavucontrol")
+            awful.spawn.with_shell("pavucontrol-qt")
         end,
         { description = "pavucontrol", group = "media" }
     ),
