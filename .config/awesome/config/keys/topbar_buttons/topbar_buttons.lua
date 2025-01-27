@@ -72,7 +72,7 @@ local topbar_buttons = {
     --volume_widget-----------------------------------------------------------------
     volume_widget = mytable.join(
         awful.button({}, 1, function() -- left click
-                awful.spawn(string.format("pavucontrol"))
+                awful.spawn(string.format("pavucontrol-qt"))
             end),
         awful.button({}, 2, function() -- middle click
                 os.execute(string.format("%s set %s 100%%", s.volume.cmd, s.volume.channel))
