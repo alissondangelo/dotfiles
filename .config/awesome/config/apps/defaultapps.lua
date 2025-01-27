@@ -4,4 +4,4 @@ editor_cmd  = terminal .. " -e " .. editor
 fileManager = "pcmanfm"
 browser1    = "brave"
 browser2    = "firefox"
-browser3    = "librewolf"
+browser3    = "qutebrowser"
