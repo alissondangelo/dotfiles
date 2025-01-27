@@ -17,11 +17,18 @@ set shiftwidth=4	" Number of auto-indent spaces
 set smartindent	" Enable smart-indent
 set smarttab	" Enable smart-tabs
 set softtabstop=4	" Number of spaces per Tab
- 
+
+set notermguicolors
+
 " Advanced
 set confirm	" Prompt confirmation dialogs
 set ruler	" Show row and column ruler information
  
 set undolevels=1000	" Number of undo levels
 set backspace=indent,eol,start	" Backspace behaviour
- 
+
+" Plug
+call plug#begin('~/.local/share/nvim/site/autoload/plug.vim')
+Plug 'dylanaraps/wal.vim'
+call plug#end()
+colorscheme wal
