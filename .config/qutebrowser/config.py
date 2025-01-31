@@ -120,6 +120,11 @@ config.set('content.cookies.accept', 'all', 'devtools://*')
 #   - never: Don't accept cookies at all.
 c.content.cookies.accept = 'no-3rdparty'
 
+# Set fullscreen notification overlay timeout in milliseconds. If set to
+# 0, no overlay will be displayed.
+# Type: Int
+c.content.fullscreen.overlay_timeout = 0
+
 # Value to send in the `Accept-Language` header. Note that the value
 # read from JavaScript is always the global value.
 # Type: String
