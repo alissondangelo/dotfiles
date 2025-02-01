@@ -3,7 +3,7 @@
 #colorscript random
 
 #show country flags
-countryfetch random
+#countryfetch random
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
