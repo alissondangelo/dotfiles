@@ -6,5 +6,5 @@
 
 config_version: 2
 settings:
-  content.notifications.enabled:
-    https://shopee.com.br: false
+  fileselect.handler:
+    global: default
