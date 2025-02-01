@@ -216,7 +216,7 @@ config.set('content.local_content_can_access_file_urls', False, 'file:///home/al
 # Valid values:
 #   - default: Use the default file selector.
 #   - external: Use an external command.
-c.fileselect.handler = 'external'
+c.fileselect.handler = 'default'
 
 # Command (and arguments) to use for selecting a single file in forms.
 # The command should write the selected file path to the specified file
@@ -224,7 +224,7 @@ c.fileselect.handler = 'external'
 # the file to be written to. If not contained in any argument, the
 # standard output of the command is read instead.
 # Type: ShellCommand
-c.fileselect.single_file.command = ['alacritty', '--class', 'floating', '-e', 'ranger', '--choosefile={}']
+c.fileselect.single_file.command = ['xterm', '-e', 'ranger', '--choosefile={}']
 
 # Command (and arguments) to use for selecting multiple files in forms.
 # The command should write the selected file paths to the specified file
@@ -233,7 +233,7 @@ c.fileselect.single_file.command = ['alacritty', '--class', 'floating', '-e', 'r
 # contained in any argument, the   standard output of the command is
 # read instead.
 # Type: ShellCommand
-c.fileselect.multiple_files.command = ['alacritty', '-e', 'ranger', '--choosefiles={}']
+c.fileselect.multiple_files.command = ['xterm', '-e', 'ranger', '--choosefiles={}']
 
 # Command (and arguments) to use for selecting a single folder in forms.
 # The command should write the selected folder path to the specified
