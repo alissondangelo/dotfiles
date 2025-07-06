@@ -3,7 +3,7 @@ background = '{background}'
 foreground = '{foreground}'
 
 [colors.cursor]
-text = '{foreground}'
+text = '{background}'
 cursor = '{cursor}'
 
 [colors.normal]
