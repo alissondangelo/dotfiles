@@ -35,7 +35,6 @@ awful.rules.rules = {
             },
             class = {
                 "Nvidia-settings",
-                "org.gnome.FileRoller",
                 "Lxappearance",
                 "Tor Browser", -- Needs a fixed window size to avoid fingerprinting by screen size.
                 "mpv",
@@ -44,6 +43,7 @@ awful.rules.rules = {
                 -- and the name shown there might not match defined rules here.
             },
             name = {
+		"Archive Manager",
                 "Event Tester" -- xev.
             },
             role = {
