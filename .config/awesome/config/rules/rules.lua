@@ -43,7 +43,7 @@ awful.rules.rules = {
                 -- and the name shown there might not match defined rules here.
             },
             name = {
-		"Archive Manager",
+		--"Archive Manager",
                 "Event Tester" -- xev.
             },
             role = {
