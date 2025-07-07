@@ -1,3 +1,4 @@
 [Default Applications]
 inode/directory=pcmanfm-qt.desktop
 image/png=feh.desktop
+text/plain=codium.desktop
