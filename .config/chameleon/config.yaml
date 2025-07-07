@@ -12,11 +12,11 @@ oomoxicons:
   command: "oomox-papirus-icons-cli"
   #command: "oomox-suruplus-icons-cli"
   # Path to the desired theme you want to apply
-  themepath: "/home/alisson/.config/oomox/scripted_colors/xresources/xresources-reverse"
+  themepath: "$HOME/.config/oomox/scripted_colors/xresources/xresources-reverse"
 
 oomoxgtk:
   # Path to the desired theme you want to apply
-  themepath: "/home/alisson/.config/oomox/scripted_colors/xresources/xresources-reverse"
+  themepath: "$HOME/.config/oomox/scripted_colors/xresources/xresources-reverse"
 
 # oomoxspotify:
   # spotifypath: "/opt/spotify/Apps"
