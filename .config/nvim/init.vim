@@ -28,7 +28,7 @@ set undolevels=1000	" Number of undo levels
 set backspace=indent,eol,start	" Backspace behaviour
 
 " Plug
-call plug#begin('~/.local/share/nvim/site/autoload/plug.vim')
+call plug#begin('~/.local/share/nvim/site/autoload/')
 Plug 'dylanaraps/wal.vim'
 call plug#end()
 colorscheme wal
