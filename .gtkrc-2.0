@@ -1,4 +1,3 @@
-include "/home/alisson/.gtkrc-2.0.mine"
 gtk-theme-name="oomox-xresources-reverse"
 gtk-icon-theme-name="oomox-xresources-reverse"
 gtk-font-name="RobotoMono Nerd Font Mono Medium 11"
