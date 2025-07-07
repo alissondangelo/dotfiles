@@ -2,7 +2,7 @@ font_size: 22
 theme: pywal
 tree_1:
   general:
-    github: "https://www.github.com/"
+    github: "https://www.github.com/alissondangelo"
     gmail: "https://mail.google.com/"
   reddit:
     frontpage: 
@@ -14,9 +14,4 @@ tree_2:
     archwiki: 
       - "https://archlinux.org/"
       - "arch wiki"
-    hulu: "https://www.hulu.com/"
-    netflix: "https://www.netflix.com/"
     youtube: "https://www.youtube.com/"
-tree_3:
-  search:
-    startPage: "https://www.startpage.com/do/mypage.pl?prfe=66d7852fd465d3176f0fd9056f60d304fa19ae848044bb5c5b61894284687b3a0a4f2873c9f1639d73109fec287619de3b0b3481391fc1dc2c4dcae6d2ed33029e2859e8633fe7f7181edae5ce3e"
