@@ -1,5 +1,5 @@
 xrdb -merge ~/.Xresources &                 
 numlockx &                                  
-xset s 300 &                                
+xset s 180 &                                
                                                  
 exec awesome                                
