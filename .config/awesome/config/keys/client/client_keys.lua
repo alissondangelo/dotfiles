@@ -24,6 +24,16 @@ local clientkeys = mytable.join(
     awful.key({ modkey, "Shift" }, "Right", function(c) helpers.move_client_dwim(c, "right") end,
         { description = "move client right", group = "client" }),
 
+    -- move to next screen ---------------------------------------------------------------------
+    awful.key({ modkey, "Shift" }, "backslash", 
+        function()
+            if client.focus then
+                local c = client.focus
+                c:move_to_screen(c.screen.index + 1)
+            end
+        end,
+        { description = "move client to next monitor", group = "client" }),
+
     -- Resize focused client or layout factor
     awful.key({ modkey, "Control" }, "j", function(c) helpers.resize_dwim(client.focus, "down") end,
         { description = "resize client down", group = "client" }),
