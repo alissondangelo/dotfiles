@@ -1,43 +1,144 @@
 #!/bin/bash
-# Screenshot wrapper
-# Uses maim (which uses slop)
-# "Friendship ended with scrot. Now maim is my best friend."
+# Screenshot wrapper melhorado para multi-monitor
+# Usa maim + xrandr para capturar monitores específicos ou todos separadamente
 
-SCREENSHOTS_DIR=~/Pictures/Screenshots
+set -o noclobber
+
+SCREENSHOTS_DIR="$HOME/Pictures/Screenshots"
+mkdir -p "$SCREENSHOTS_DIR"
 TIMESTAMP="$(date +%Y.%m.%d-%H.%M.%S)"
-#TIMESTAMP="$(date +%Y.%m.%d--%s)"
-FILENAME=$SCREENSHOTS_DIR/$TIMESTAMP.png
+FILENAME="$SCREENSHOTS_DIR/$TIMESTAMP.png"
 
+# Função para listar todos os monitores conectados
+get_all_monitors() {
+    xrandr --query | awk '/ connected/{print $1}'
+}
 
-# -u option hides cursor
-# -m option changes the compression level
-#   -m 3 takes the shot faster but the file size is slightly bigger
-
-if [[ "$1" = "-s" ]]; then
-    # Area/window selection.
-    notify-send 'Select area to capture.' -t 500 --urgency low 
-    maim -u -m 3 -s $FILENAME
-    if [[ "$?" = "0" ]]; then
-        notify-send "📸 Screenshot taken." -t 300 --urgency low 
+# Função para pegar monitor primário
+get_primary_monitor() {
+    local mon
+    mon="$(xrandr --query | awk '/ connected primary/{print $1; exit}')"
+    if [ -z "$mon" ]; then
+        mon="$(xrandr --query | awk '/ connected/{print $1; exit}')"
     fi
-elif [[ "$1" = "-c" ]]; then
-    notify-send 'Select area to copy to clipboard.' -t 500 --urgency low 
-    # Copy selection to clipboard
-    #maim -u -m 3 -s | xclip -selection clipboard -t image/png
-    maim -u -m 3 -s /tmp/maim_clipboard
-    if [[ "$?" = "0" ]]; then
-        xclip -selection clipboard -t image/png /tmp/maim_clipboard
-        notify-send "📸 Copied selection to clipboard."-t 300 --urgency low 
-        rm /tmp/maim_clipboard
-    fi
-elif [[ "$1" = "-b" ]]; then
-    # Browse with feh
-    cd $SCREENSHOTS_DIR ; feh $('ls' -t) &
-elif [[ "$1" = "-e" ]]; then
-    # Edit last screenshot with GIMP
-    cd $SCREENSHOTS_DIR ; gimp $('ls' -t | head -n1) & notify-send 'Opening last screenshot with GIMP' --urgency low
-else
-    # Full screenshot
-    maim -u -m 3 $FILENAME
-    notify-send "📸 Screenshot taken." -t 300 --urgency low 
-fi
+    printf '%s\n' "$mon"
+}
+
+# Função para pegar monitor secundário (qualquer que não seja primário)
+get_secondary_monitor() {
+    local primary="$1"
+    xrandr --query | awk -v p="$primary" '/ connected/ && $1!=p {print $1; exit}'
+}
+
+# Função para extrair a geometria (formato wxh+x+y)
+get_monitor_geometry() {
+    local mon="$1"
+    xrandr --query | awk -v mon="$mon" '
+        $1==mon {
+            for (i=1;i<=NF;i++) {
+                if ($i ~ /^[0-9]+x[0-9]+\+[0-9]+\+[0-9]+$/) { print $i; exit }
+            }
+        }
+    '
+}
+
+show_help() {
+cat <<EOF
+📷 Screenshot Script - Ajuda
+Uso: $0 [opção]
+
+Opções:
+  -s     Selecionar área para captura e salvar no diretório
+  -c     Selecionar área e copiar para o clipboard
+  -m1    Capturar apenas o monitor primário
+  -m2    Capturar o monitor secundário (primeiro não-primário)
+  -a     Capturar todos os monitores separadamente (um arquivo por monitor)
+  -b     Abrir todas as screenshots com feh
+  -e     Editar a última screenshot com GIMP
+  -h     Mostrar este manual
+
+Sem opções: captura todas as telas (full screenshot).
+Local de salvamento: $SCREENSHOTS_DIR
+EOF
+}
+
+case "$1" in
+    -s)
+        notify-send 'Selecione a área para capturar.' -t 500 --urgency low
+        if maim -u -m 3 -s "$FILENAME"; then
+            notify-send "📸 Screenshot salva." -t 300 --urgency low
+        fi
+        ;;
+    -c)
+        notify-send 'Selecione a área para copiar.' -t 500 --urgency low
+        TMPIMG="$(mktemp /tmp/maim_clipboard.XXXXXX.png)"
+        if maim -u -m 3 -s "$TMPIMG"; then
+            xclip -selection clipboard -t image/png "$TMPIMG"
+            notify-send "📸 Copiado para clipboard." -t 300 --urgency low
+            rm -f "$TMPIMG"
+        fi
+        ;;
+    -m1)
+        PRIMARY="$(get_primary_monitor)"
+        GEOM="$(get_monitor_geometry "$PRIMARY")"
+        if [ -z "$GEOM" ]; then
+            notify-send "❌ Não foi possível obter geometria de $PRIMARY." -t 2000 --urgency normal
+            exit 1
+        fi
+        maim -u -m 3 -g "$GEOM" "$FILENAME" \
+          && notify-send "📸 Capturado monitor primário ($PRIMARY)." -t 300 --urgency low
+        ;;
+    -m2)
+        PRIMARY="$(get_primary_monitor)"
+        SECONDARY="$(get_secondary_monitor "$PRIMARY")"
+        if [ -z "$SECONDARY" ]; then
+            notify-send "❌ Nenhum monitor secundário encontrado." -t 2000 --urgency normal
+            exit 1
+        fi
+        GEOM="$(get_monitor_geometry "$SECONDARY")"
+        if [ -z "$GEOM" ]; then
+            notify-send "❌ Não foi possível obter geometria de $SECONDARY." -t 2000 --urgency normal
+            exit 1
+        fi
+        maim -u -m 3 -g "$GEOM" "$FILENAME" \
+          && notify-send "📸 Capturado monitor secundário ($SECONDARY)." -t 300 --urgency low
+        ;;
+    -a)
+        notify-send "📸 Capturando todos os monitores separadamente..." -t 800 --urgency low
+        for MON in $(get_all_monitors); do
+            GEOM="$(get_monitor_geometry "$MON")"
+            if [ -n "$GEOM" ]; then
+                maim -u -m 3 -g "$GEOM" "${FILENAME}"
+                sleep 1
+                TIMESTAMP="$(date +%Y.%m.%d-%H.%M.%S)"
+                FILENAME="$SCREENSHOTS_DIR/$TIMESTAMP.png"
+            fi
+        done
+        notify-send "✅ Captura de todos os monitores concluída." -t 1000 --urgency low
+        ;;
+    -b)
+        cd "$SCREENSHOTS_DIR" || exit 1
+        feh $(ls -t) &
+        ;;
+    -e)
+        cd "$SCREENSHOTS_DIR" || exit 1
+        LAST="$(ls -t | head -n1)"
+        if [ -n "$LAST" ]; then
+            gimp "$LAST" &
+            notify-send 'Abrindo última captura no GIMP' --urgency low
+        else
+            notify-send 'Nenhuma captura encontrada.' --urgency normal
+        fi
+        ;;
+    -h|--help)
+        show_help
+        ;;
+    "" )
+        maim -u -m 3 "$FILENAME" && notify-send "📸 Screenshot salva." -t 300 --urgency low
+        ;;
+    * )
+        echo "Opção inválida: $1"
+        echo "Use -h para ajuda."
+        exit 2
+        ;;
+esac
