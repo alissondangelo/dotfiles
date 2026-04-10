@@ -28,7 +28,13 @@ local globalkeys = mytable.join(
 
     -- screenshots -----------------------------------------------------------------
     awful.key({}, "Print", function() awful.spawn("screenshot") end,
-        { description = "take full screenshot", group = "screenshots" }),
+        { description = "take full screenshot extend monitors", group = "screenshots" }),
+    awful.key({}, "Scroll_Lock", function() awful.spawn("screenshot -m1") end,
+        { description = "take full screenshot monitor 1", group = "screenshots" }),
+    awful.key({modkey, }, "Scroll_Lock", function() awful.spawn("screenshot -m2") end,
+        { description = "take full screenshot monitor 2", group = "screenshots" }),
+    awful.key({ modkey, "Shift" }, "Scroll_Lock", function() awful.spawn("screenshot -a") end,
+        { description = "take full screenshot all monitors", group = "screenshots" }),
     awful.key({ modkey, }, "Print", function() awful.spawn("screenshot -s") end,
         { description = "select area to capture", group = "screenshots" }),
     awful.key({ modkey, "Shift" }, "Print", function() awful.spawn("screenshot -c") end,
@@ -55,6 +61,8 @@ local globalkeys = mytable.join(
         { description = "Lutris", group = "games" }),
     awful.key({ modkey, }, "s", function() awful.spawn("steam") end,
         { description = "Steam", group = "games" }),
+    awful.key({ modkey, }, "h", function() awful.spawn("heroic") end,
+        { description = "Heroic", group = "games" }),
     awful.key({ modkey, }, "d", function() awful.spawn("discord") end,
         { description = "Discord", group = "games" }),
     awful.key({ modkey, }, "t", function() awful.spawn("/usr/bin/java -jar /home/alisson/Games/SSD/Linux/TLauncher.jar") end,
@@ -63,7 +71,7 @@ local globalkeys = mytable.join(
         { description = "Performance Mode", group = "games" }),
 
     -- awesome ---------------------------------------------------------------------
-    awful.key({ modkey, }, "w", function() awful.util.mymainmenu:show() end,
+    awful.key({ modkey, }, "a", function() awful.util.mymainmenu:show() end,
         { description = "show system menu", group = "awesome" }),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
         { description = "reload awesome", group = "awesome" }),
@@ -86,6 +94,22 @@ local globalkeys = mytable.join(
     awful.key({ modkey, altkey }, "k", function() awful.tag.incncol(-1, nil, true) end,
         { description = "decrease the number of columns", group = "layout" }),
 
+    -- screens keys ---------------------------------------------------------------------
+    awful.key({ modkey,  }, "backslash", function() awful.screen.focus_relative(1) end,
+        { description = "focus next monitor", group = "screen" }),
+    awful.key({ modkey, altkey }, "'",  function () 
+            awful.spawn.with_shell("xrandr --output DisplayPort-0 --primary --auto --output HDMI-A-0 --auto --left-of DisplayPort-0")
+        end,
+        { description = "ativar dois monitores", group = "screen"} ),
+    awful.key({ modkey, altkey }, "1", function ()
+            awful.spawn.with_shell("xrandr --output DisplayPort-0 --primary --auto --output HDMI-A-0 --off")
+        end,
+        { description = "somente monitor principal", group = "screen" }),
+    awful.key({ modkey, altkey }, "2", function ()
+            awful.spawn.with_shell("xrandr --output HDMI-A-0 --auto --primary --output DisplayPort-0 --off")
+        end,
+        { description = "somente monitor HDMI", group = "screen" }),
+
     -- tag keys ---------------------------------------------------------------------
     awful.key({ modkey, altkey }, "Left", awful.tag.viewprev,
         { description = "view previous", group = "tag" }),
@@ -101,11 +125,6 @@ local globalkeys = mytable.join(
         { description = "open a floating terminal", group = "launcher" }),
     awful.key({ modkey, "Shift" }, "r", function() awful.screen.focused().mypromptbox:run() end,
         { description = "run prompt", group = "launcher" }),
-    awful.key({ modkey, }, "backslash",
-        function()
-            awful.spawn.with_shell("rofi -show drun")
-        end,
-        { description = "open rofi menu", group = "launcher" }),
     awful.key({ modkey, }, "r",
         function()
             awful.spawn.with_shell("rofi -show drun")
@@ -113,6 +132,10 @@ local globalkeys = mytable.join(
         { description = "open rofi menu", group = "launcher" }),
     awful.key({ modkey, }, "e", function() awful.spawn(fileManager) end,
         { description = "File Manager", group = "utilities" }),
+
+    -- System ---------------------------------------------------------------------
+    awful.key({ modkey, }, "Escape", function() awful.spawn(terminal .. " -e htop") end,
+        { description = "open htop", group = "launcher" }),
 
     -- topbar -----------------------------------------------------------------------
     awful.key({ modkey, }, "=",
@@ -181,11 +204,23 @@ local globalkeys = mytable.join(
 
 
     -- customization ------------------------------------------------------------------
-    awful.key({ modkey, "Shift" }, "w",
+    awful.key({ modkey, }, "w",
         function()
             awful.spawn.with_shell("change_wallpaper_theme")
         end,
-        { description = "Change wallpaper and color scheme", group = "customization" }
+        { description = "Switch wallpaper and color scheme", group = "customization" }
+    ),
+    awful.key({ modkey, "Shift" }, "w",
+        function()
+            awful.spawn.with_shell("change_wallpaper_theme -r")
+        end,
+        { description = "Randomly switch the wallpaper and color scheme.", group = "customization" }
+    ),
+    awful.key({ modkey, "Ctrl" }, "w",
+        function()
+            awful.spawn.with_shell("change_wallpaper_theme -p")
+        end,
+        { description = "Generate and cache color schemes for all walpapers.", group = "customization" }
     ),
 
     --client -----------------------------------------------------------------------
