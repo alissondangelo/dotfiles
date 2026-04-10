@@ -2,3 +2,11 @@
 inode/directory=pcmanfm-qt.desktop
 image/png=feh.desktop
 text/plain=codium.desktop
+application/xml=codium.desktop
+application/json=codium.desktop
+application/vnd.microsoft.portable-executable=wine.desktop
+
+[Added Associations]
+application/x-zerosize=codium.desktop;
+image/vnd.microsoft.icon=firefox.desktop;
+application/json=codium.desktop;
