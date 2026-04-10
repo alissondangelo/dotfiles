@@ -1,9 +1,86 @@
 #!/bin/sh
 
-WALLPAPERDIR=$HOME/Pictures/Wallpapers
+WALLPAPERDIR="$HOME/Pictures/Wallpapers"
 
-cd $WALLPAPERDIR &&
-FILENAME=$(yad --title="Select Wallpaper" --file --add-preview --large-preview) &&
-alacritty --class floating -e chameleon.py -i $FILENAME
-#$HOME/.local/bin/starttree.py
-echo "awesome.restart()" | awesome-client
+show_help() {
+    cat <<EOF
+Usage: $(basename "$0") [OPTION] [DELAY]
+
+Options:
+  -p, --preview [DELAY]   Preview mode: cycle through PNG wallpapers using 'wal'.
+                          Optional DELAY in seconds (default: 0).
+  -r, --random            Random mode: run chameleon with a random image from the directory.
+  -h, --help              Show this help message.
+
+If no option is given, a file picker will open to manually select a wallpaper.
+EOF
+}
+
+# Normalize long options to short ones
+case "$1" in
+    --preview) set -- -p "$2" ;;
+    --random)  set -- -r ;;
+    --help)    set -- -h ;;
+esac
+
+# Enforce exclusive mode usage
+if [ "$#" -gt 2 ]; then
+    echo "Error: Only one mode can be used at a time."
+    echo "Use -h or --help for usage information."
+    exit 1
+fi
+
+# Help
+if [ "$1" = "-h" ]; then
+    show_help
+    exit 0
+fi
+
+# Preview mode
+if [ "$1" = "-p" ]; then
+    DELAY="${2:-0}"
+
+    if [ ! -d "$WALLPAPERDIR" ]; then
+        echo "Error: Directory $WALLPAPERDIR does not exist."
+        exit 1
+    fi
+
+    PNG_COUNT=$(find "$WALLPAPERDIR" -maxdepth 1 -type f -iname '*.png' | wc -l)
+    if [ "$PNG_COUNT" -eq 0 ]; then
+        echo "No PNG images found in $WALLPAPERDIR."
+        exit 1
+    fi
+
+    wal -c
+    for img in "$WALLPAPERDIR"/*.png; do
+        [ -f "$img" ] && wal -i "$img" && sleep "$DELAY"
+    done
+    exit 0
+fi
+
+# Random mode
+if [ "$1" = "-r" ]; then
+    if [ ! -d "$WALLPAPERDIR" ]; then
+        echo "Error: Directory $WALLPAPERDIR does not exist."
+        exit 1
+    fi
+
+    alacritty --class floating -e chameleon.py -i "$WALLPAPERDIR"
+    echo "awesome.restart()" | awesome-client
+    exit 0
+fi
+
+# Default mode
+if cd "$WALLPAPERDIR"; then
+    FILENAME=$(yad --title="Select Wallpaper" --file --add-preview --large-preview)
+    if [ -n "$FILENAME" ]; then
+        alacritty --class floating -e chameleon.py -i "$FILENAME"
+        # "$HOME/.local/bin/starttree.py"
+        echo "awesome.restart()" | awesome-client
+    else
+        echo "No file selected."
+    fi
+else
+    echo "Error: Failed to access directory $WALLPAPERDIR"
+    exit 1
+fi
