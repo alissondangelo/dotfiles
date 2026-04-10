@@ -121,83 +121,85 @@ awful.screen.connect_for_each_screen(function(s)
         },
     }
 
-    --SysTray-------------------------------------------------------------------------
-    s.systray_image = wibox.widget.imagebox(beautiful.icons_topbar[false])
-    s.systray_button = wibox.widget {
-        {
-            s.systray_image,
-            left  = dpi(4),
-            right = dpi(4),
-            widget = wibox.container.margin
-        },
-        shape = helpers.rounded_rect_shape(),
-        widget = wibox.container.background,
-        buttons = topbar_buttons.systray
-    }
-    s.systray = wibox.widget.systray()
-    s.systray.visible = false
-    helpers.mouse_hover(s.systray_button, beautiful.hover_color)
-
-	--Binary clock--------------------------------------------------------------------
-    s.binclock = binclock_widget{
-        show_seconds = true,
-        gap = 1.4,
-    }
-    helpers.mouse_hover(s.binclock, beautiful.hover_color)
-
-    --calendar----------------------------------------------------------------------
-    s.cw = calendar_widget{
-        attach_to = {s.binclock},
-        week_start = 1,
-        icons = "",
-        notification_preset = {
-            font = "Monospace 12",
-            fg   = beautiful.fg_normal,
-            bg   = beautiful.bg_normal,
-            border_color = beautiful.tooltip_border_color,
-            border_width = beautiful.tooltip_border_width,
-            shape = beautiful.tooltip_shape
-        }
-    }
-
-    --volume------------------------------------------------------------------------
-    s.volicon1 = wibox.widget {
-        image = beautiful.icons_topbar.volmuted,
-        widget = wibox.widget.imagebox,
-    }
-    s.volicon2 = wibox.widget {
-        image = beautiful.icons_topbar.volmuted,
-        widget = wibox.widget.imagebox,
-    }
-    s.volicon = wibox.widget {
-        {
+    if s.index == 1 then
+        --SysTray-------------------------------------------------------------------------
+        s.systray_image = wibox.widget.imagebox(beautiful.icons_topbar[false])
+        s.systray_button = wibox.widget {
             {
-                s.volicon1,
-                s.volicon2,
-                layout = wibox.layout.fixed.horizontal,
+                s.systray_image,
+                left  = dpi(4),
+                right = dpi(4),
+                widget = wibox.container.margin
             },
-            left  = dpi(3),
-            right = dpi(4),
-            widget  = wibox.container.margin,
+            shape = helpers.rounded_rect_shape(),
+            widget = wibox.container.background,
+            buttons = topbar_buttons.systray
+        }
+        s.systray = wibox.widget.systray()
+        s.systray.visible = false
+        helpers.mouse_hover(s.systray_button, beautiful.hover_color)
 
-        },
-        shape = helpers.rounded_rect_shape(),
-        widget = wibox.container.background,
-        buttons = topbar_buttons.volume_widget
-    }
-    s.volume = volume_widget({
-        settings = function()
-            local index, perc = "", tonumber(volume_now.level) or 0
-            if volume_now.status == "off" then
-                s.volicon1.image = beautiful.icons_topbar.volmuted
-                s.volicon2.image = beautiful.icons_topbar.volmuted
-            else
-                s.volicon1.image = beautiful.icons_topbar[math.floor(perc/10)]
-                s.volicon2.image = beautiful.icons_topbar[(perc%10)]
-            end
-    end})
-    helpers.mouse_hover(s.volicon, beautiful.hover_color)
+        --Binary clock--------------------------------------------------------------------
+        
+            s.binclock = binclock_widget{
+                show_seconds = true,
+                gap = 1.4,
+            }
+            helpers.mouse_hover(s.binclock, beautiful.hover_color)
 
+        --calendar----------------------------------------------------------------------
+        s.cw = calendar_widget{
+            attach_to = {s.binclock},
+            week_start = 1,
+            icons = "",
+            notification_preset = {
+                font = "Monospace 12",
+                fg   = beautiful.fg_normal,
+                bg   = beautiful.bg_normal,
+                border_color = beautiful.tooltip_border_color,
+                border_width = beautiful.tooltip_border_width,
+                shape = beautiful.tooltip_shape
+            }
+        }
+
+        --volume------------------------------------------------------------------------
+        s.volicon1 = wibox.widget {
+            image = beautiful.icons_topbar.volmuted,
+            widget = wibox.widget.imagebox,
+        }
+        s.volicon2 = wibox.widget {
+            image = beautiful.icons_topbar.volmuted,
+            widget = wibox.widget.imagebox,
+        }
+        s.volicon = wibox.widget {
+            {
+                {
+                    s.volicon1,
+                    s.volicon2,
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                left  = dpi(3),
+                right = dpi(4),
+                widget  = wibox.container.margin,
+
+            },
+            shape = helpers.rounded_rect_shape(),
+            widget = wibox.container.background,
+            buttons = topbar_buttons.volume_widget
+        }
+        s.volume = volume_widget({
+            settings = function()
+                local index, perc = "", tonumber(volume_now.level) or 0
+                if volume_now.status == "off" then
+                    s.volicon1.image = beautiful.icons_topbar.volmuted
+                    s.volicon2.image = beautiful.icons_topbar.volmuted
+                else
+                    s.volicon1.image = beautiful.icons_topbar[math.floor(perc/10)]
+                    s.volicon2.image = beautiful.icons_topbar[(perc%10)]
+                end
+        end})
+        helpers.mouse_hover(s.volicon, beautiful.hover_color)
+    end
     --Create the wibox--------------------------------------------------------------
     s.mywibox = awful.wibar({ position = "top", screen = s, height = "23" })
 
