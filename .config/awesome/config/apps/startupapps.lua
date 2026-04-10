@@ -4,7 +4,8 @@ local awful = require('awful')
 
 local apps = {
     -- "gwe --hide-window",
-    "feh --bg-scale $(< ${HOME}/.cache/wal/wal)",
+    "xrandr --output DisplayPort-0 --primary --auto --output HDMI-A-0 --auto --left-of DisplayPort-0",
+    "feh --bg-fill $(< ${HOME}/.cache/wal/wal)",
     "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1",
     "picom -b --backend glx --config  $HOME/.config/picom/picom.conf",
     "caffeine",
